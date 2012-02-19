@@ -1,0 +1,398 @@
+/* fix the normalize overflow since we use a sidebar and don't want the overflow for the sidebar */
+html {
+    overflow-y: auto;
+}
+a {
+    color: #ffff00;
+    text-decoration: none;
+}
+a:visited {
+    color: #ffff33;
+}
+a:hover {
+    color: #00ffff;
+}
+a:focus {
+    outline: none;
+}
+
+/* =============================================================================
+   Basic Layout for sidebar + content
+   ========================================================================== */
+#sidebar {
+    background-color: #121212;
+    background-image: linear-gradient(top, #121212 0%, #0A0A0A 100%);
+    background-image: -o-linear-gradient(top, #121212, #0A0A0A);
+    background-image: -moz-linear-gradient(center top, #121212 0%, #0A0A0A 100%);
+    background-image: -webkit-gradient(linear, left top, left 500, color-stop(0, #121212), color-stop(1, #0A0A0A) );
+    background-image: -webkit-linear-gradient(top, #121212 0%, #0A0A0A 100%);
+    background-image: -ms-linear-gradient(top, #121212 0%, #0A0A0A 100%);
+    border-right: 1px solid #4E4E4E;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 150px;
+    -moz-box-shadow: inset -12px 0 30px -30px #fff;
+    -webkit-box-shadow: inset -12px 0 30px -30px #fff;
+    box-shadow: inset -12px 0 30px -30px #fff;
+    text-shadow: #0A0A0A 0 1px 0;
+}
+#logo {
+    height: 40px;
+    left: 25px;
+    position: absolute;
+    top: 5px;
+    width: 99px;
+}
+#tab-container {
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 50px;
+}
+#tab-container a {
+    text-decoration: none;
+}
+#tab-container div {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    color: #808080;
+    cursor: pointer;
+    font-size: 13px;
+    height: 28px;
+    line-height: 28px;
+    padding-right: 25px;
+}
+#tab-container div.active, #tab-container div:hover {
+    background-color: #2C2C2C;
+    border-color: #414141;
+    color: #fff;
+    -moz-box-shadow: inset -12px 0 30px -30px #fff;
+    -webkit-box-shadow: inset -12px 0 30px -30px #fff;
+    box-shadow: inset -12px 0 30px -30px #fff;
+    text-shadow: 0 1px 0 #242424;
+}
+#content {
+    bottom: 0;
+    left: 151px;
+    -webkit-overflow-scrolling: touch; /*iOS 5 fix */
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 15px 20px 20px;
+    min-width: 400px;
+    font-size: 13px;
+    background-color: #000;
+}
+/* =============================================================================
+   Content Layout
+   ========================================================================== */
+/* column container */
+.colmask {
+    position:relative; /* This fixes the IE7 overflow hidden bug */
+    clear:both;
+    float:left;
+    overflow:hidden;
+    border: 1px solid #202121;
+    background:#0C0C0C;
+    width: 100%;
+    color: #fff;
+}
+/* content section column */
+.col2 {
+    float:left;
+    overflow:hidden;
+    font-family: "Trebuchet MS",Verdana,Helvetica,sans-serif;
+    padding: 10px 15px;
+    width: 245px; /* optional */
+}
+/* content column */
+.col1 {
+    width: 100%;
+    float: none;
+    padding: 5px 0 10px 0;
+    color: #fff;
+}
+/* section + content wrapper */
+.section, .Servers form, #addFeed, #addFeedContent { 
+    border-bottom: 1px solid #202121;
+    overflow: hidden;
+}
+.section:last-child, .Servers form:last-child {
+    border: none;
+}
+/* =============================================================================
+   Content Styling (col1/col2)
+   ========================================================================== */
+.col2 h3 {
+    background: none repeat scroll 0 0 #ccc;
+    color: #000;
+    padding: 6px 8px;
+    vertical-align: middle;
+    margin: 0;
+}
+.example {
+    background-color: #001111;
+}
+.presets {
+    overflow: hidden;
+}
+label.config {
+    float: left;
+    width: 24%;
+    font-weight: 700;
+    display: block;
+    text-align: left;
+    margin-right: 10px;
+    margin-left: 22px;
+}
+label.wide {
+    width: auto !important;
+}
+.desc {
+    display: block;
+    margin: 0 0 0 24%;
+    padding: 2px 0 0 31px;
+    font-size: 90%;
+    font-style: italic;
+}
+.desc-check {
+    font-size: 90%;
+    font-style: italic;
+    padding: 0 1px;
+}
+#content p, #content li {
+    font-size: 12px;
+    color: #AAA;
+}
+div.field-pair { 
+    padding: 6px;
+    clear: both;
+    float: none;
+    overflow: hidden;
+    /* makes things wrap nicer for small resolutions */
+    min-width: 555px;
+}
+#content fieldset { 
+    border:0;
+    outline: 0;
+    min-width: 350px;
+}
+input[type='url'],
+input[type='email'],
+input[type='text'],
+input[type='password'],
+select { 
+    padding-left: 5px;
+    border: 1px solid #D4D0C8;
+}
+input[type='checkbox'] {
+    display: block;
+    white-space: nowrap;
+    width: 15px;
+    padding: 0;
+    margin-left: 5px;
+}
+select:hover, input[type='url']:hover, input[type='email']:hover, input[type='text']:hover, input[type='password']:hover,
+select:focus, input[type='url']:focus, input[type='email']:focus, input[type='text']:focus, input[type='password']:focus {
+    background-color: #FFFFF0;
+    border: 1px solid #AAA;
+}
+.col1 input[type='checkbox'] {
+    position: absolute;
+    margin-left: 0;
+}
+.alt {
+    background-color: #222;
+}
+/* :nth-child is not supported in all browsers.. shame */
+/*
+.col1 div.field-pair:nth-child(even) {
+    background-color: #EEEEEE;
+}
+*/
+.even {
+    background-color: #202121;
+}
+.readonly {
+    background-color: #100;
+}
+.multiple_cats { 
+    padding: 5px 10px !important;
+    margin-top: 2px;
+}
+.padding { 
+    padding: 6px;
+}
+.disabled {
+    color: #555;
+}
+.nomargin {
+    margin: 0;
+}
+.path {
+    font-family: 'Verdana','Helvetica','Sans-serif','sans';
+    color: #fff;
+    font-weight: 400;
+}
+.darkred {
+    color: #900;
+}
+.scheduleEntry {
+    padding: 3px 0;
+}
+.time {
+    padding: 0 10px;
+    color: #fff;
+    font-weight: 700;
+}
+.frequency {
+    padding-right: 5px;
+    letter-spacing: 0.5px;
+}
+#catTableWrapper, .padTable {
+    padding: 15px;
+    overflow: auto;
+    clear: both;
+}
+#catTableWrapper h3 {
+    margin-top: 0;
+}
+.catTable th, .catTable td {
+    padding: 5px;
+}
+.catTable th {
+    text-align: center;
+}
+
+.default {
+    background-color: #FFFFE0;
+    border-bottom: 1px solid #666;
+    border-top: 1px solid #444;"
+}
+
+.hidden { visibility:hidden; }
+.float-left { float: left; }
+.float-right { float: right; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.align-center { text-align:center; }
+.nowrap { white-space: nowrap; }
+
+/* for cat sorting */
+.Key {
+    display: none;
+    border: 1px solid #444;
+    width: 350px;
+}
+.Key th, .tableHeader {
+    background: none repeat scroll 0 0 #ccc;
+    color: #000;
+    margin: 0;
+    padding: 3px 9px;
+}
+.Key td {
+    padding: 2px;
+}
+.Key tr {
+    border-bottom: 1px solid #444;
+}
+/* for the config default 'info page' */
+#infoTable {
+    font-family: 'Verdana','Helvetica','Sans-serif','sans';
+    font-size: 12px;
+    width: 100%;
+    color: #fff;
+}
+#infoTable tr {
+    line-height: 17px;
+}
+.infoTableHeader, .infoTableCell {
+    padding: 6px;
+}
+.infoTableHeader {
+    font-weight: 700;
+    width: 200px;
+}
+.infoTableSeperator {
+    border-top: 1px solid #333;
+}
+span.deleteicon {
+    position: relative;
+}
+span.deleteicon span {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    z-index: 1;
+    background: url('http://www.hyphenpress.co.uk/images/application/clear.gif');
+    cursor: pointer;
+}
+span.deleteicon input {
+    padding-right: 16px;
+}
+
+/* Notifications related css */
+.icon {
+    padding-left: 20px;
+}
+.loading {
+    background: url('../images/loading16.gif') no-repeat left bottom;
+}
+.success {
+    background: url('../images/yes16.png') no-repeat left bottom;
+}
+.failure {
+    background: url('../images/no16.png') no-repeat left bottom;
+}
+
+/* RSS related css */
+.expander-anchor {
+    background: url('../images/expander-plus.png') no-repeat scroll 20px center transparent;
+    color: #4B4742;
+    display: block;
+    padding: 5px 5px 5px 40px;
+    text-decoration: none;
+}
+.expander-anchor:visited {
+    color: #4B4742;
+}
+.expander-content {
+    display: none;
+}
+.open {
+    background: url('../images/expander-plus.png') no-repeat scroll 15px center transparent;
+}
+.close {
+    background: url('../images/expander-minus.png') no-repeat scroll 15px center transparent;
+}
+h2.activeRSS {
+    margin-bottom: 10px;
+}
+.activeRSS a, .activeRSS a:visited  {
+    text-decoration: none;
+    color: #fff;
+}
+.activeRSS a:hover {
+    color: #4B4742;
+}
+.feed {
+    text-decoration: none;
+}
+.feed_enabled {
+    color: #fff;
+    text-shadow: 0 1px 0 #0A0A0A;
+}
+.feed_disabled {
+    color: #990000;
+    text-shadow: 0 1px 0 #0A0A0A;
+}

@@ -1,0 +1,487 @@
+<!--#set global $pane="RSS"#-->
+<!--#set global $help_uri="configure-rss-0-7"#-->
+<!--#include $webdir + "/_inc_header_uc.tmpl"#-->
+
+<div class="colmask">
+<!--#if not $active_feed#-->
+    <div class="section">
+        <div class="padTable">
+
+        <p>$T('explain-RSS')</p>
+
+                <form action="add_rss_feed" method="post" novalidate>
+                <table class="catTable">
+                    <tr>
+                      <th>&nbsp;</th>
+                      <th>$T('name')</th>
+                      <th>$T('feed') URL</th>
+                      <th>&nbsp;</th>
+                    </tr>
+                    <tr class="even">
+                        <td>
+                            <input type="hidden" name="session" value="$session">
+                            <input type="hidden" value="1" name="table">
+                            <input type="checkbox" name="enable" id="enable" value="1" />
+                        </td>
+                        <td width="190"><input type="text" name="feed" size="25" value="$feed" placeholder="$feed" /></td>
+                        <td><input type="url" name="uri" size="75" /></td>
+                        <td class="nowrap">
+                            <input type="submit" class="Save" value="$T('button-add')" />
+                        </td>
+                    </tr>
+                </table>
+                </form>
+
+            <!--#set $feeds = sorted($rss.keys(), cmp=lambda x,y: cmp(x.lower(), y.lower()))#-->
+            <!--#set $odd = True#-->
+            <!--#for $feed_item in $feeds#-->
+                <!--#set $odd = not $odd#-->
+                <form action="save_rss_feed" method="post" novalidate>
+                <input type="hidden" name="session" value="$session" />
+                <input type="hidden" name="feed" value="$feed_item" />
+                <table class="catTable">
+                    <tr class="<!--#if $odd then "alt" else ""#-->" >
+                        <td><input type="checkbox" name="enable" value="1" <!--#if int($rss[$feed_item]['enable']) != 0 then 'checked="checked"' else ""#--> /></td>
+                        <td width="190">
+                            <a href="?feed=$rss[$feed_item]['link']" class="path feed"><span class="<!--#if int($rss[$feed_item]['enable']) != 0 then 'feed_enabled"' else "feed_disabled"#-->">$feed_item</span></a> 
+                            <!-- <input type="text" name="newfeed" value="$feed_item" size="25" readonly="readonly" class="readonly" /> -->
+                        </td>
+                        <td><input type="url" name="uri" value="$rss[$feed_item]['uri']" size="75" /></td>
+                        <td class="nowrap">
+                            <input type="submit" value="$T('button-save')" />
+                            <input type="button" class="delFeed" value="$T('button-x')" />
+                            <input type="button" class="testFeed" value="$T('Read')" />
+                        </td>
+                    </tr>
+                </table>
+                </form>
+            <!--#end for#-->
+
+        </div>
+    </div>
+
+    <div class="section">
+        <form action="save_rss_rate" method="post">
+        <input type="hidden" name="session" value="$session"/>
+        <div class="col1">
+            <fieldset>
+                <div class="field-pair">
+                    <label class="config narrow" for="rss_rate">$T('opt-rss_rate')</label>
+                    <input type="text" name="rss_rate" id="rss_rate" value="$rss_rate" size="8" />
+                    <input type="submit" value="$T('button-save')" />
+                    <span class="desc narrow">$T('explain-rss_rate')</span>
+                </div>
+            </fieldset>
+        </div><!-- /col1 -->
+        </form>
+    </div>  
+
+<!--#end if#-->
+
+<!--#if $active_feed#-->
+<!--#set $feed = $active_feed#-->
+
+    <div class="section">
+        <div class="padTable">
+          <h2 class="nomargin activeRSS"><a href="/config/rss/">$T('cmenu-rss')</a> &raquo; <a href="$rss[$active_feed]['uri']" onclick="window.open(this.href); return false;">$active_feed</a></h2>
+          <!--#if $error#-->
+            <h3 class="darkred">$error</h3>
+          <!--#end if#-->
+
+          <form action="upd_rss_feed" method="post">
+          <input type="hidden" name="session" value="$session"/>
+          <input type="hidden" value="$feed" name="feed" />
+          <table class="catTable">
+            <thead>
+            <tr>
+              <th>$T('rss-order')</th>
+              <th>$T('rss-type')</th>
+              <th>$T('rss-filter')</th>
+              <!--#if $rss[$feed]['pick_cat']#-->
+              <th>$T('category')</th>
+              <!--#end if#-->
+              <th>$T('priority')</th>
+              <th>$T('mode')</th>
+              <!--#if $rss[$feed]['pick_script']#-->
+              <th>$T('script')</th>
+              <!--#end if#-->
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
+
+            <!-- default / global filter -->
+            <tbody>
+            <tr class="default">
+              <td>
+                <input type="text" disabled="disabled" size="1" class="hidden" />
+              </td>
+              <td>
+                <select name="filter_type" disabled="disabled" class="hidden" >
+                  <option value="A" selected="selected"> $T('rss-accept')</option>
+                  <option value="M"> $T('rss-must')</option>
+                  <option value="R"> $T('rss-reject')</option>
+                  <option value="C"> $T('rss-mustcat')</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" disabled="disabled" value="" size="30" class="hidden" />
+              </td>
+              <!--#if $rss[$feed]['pick_cat']#-->
+              <td>
+                <select name="cat">
+                <!--#for $ct in $cat_list#-->
+                  <option value="$ct" <!--#if $ct == $rss[$feed]['cat'] then 'selected="selected"' else ""#-->>$Tspec($ct)</option>
+                <!--#end for#-->
+                </select>
+              </td>
+              <!--#end if#-->
+              <td>
+                <select name="priority">
+                  <option value="-100" <!--#if $rss[$feed]['priority'] == -100 then 'selected="selected"' else ''#-->>$T('default')</option>
+                  <option value="2" <!--#if $rss[$feed]['priority'] == 2 then 'selected="selected"' else ''#-->>$T('pr-force')</option>
+                  <option value="1" <!--#if $rss[$feed]['priority'] == 1 then 'selected="selected"' else ''#-->>$T('pr-high')</option>
+                  <option value="0" <!--#if $rss[$feed]['priority'] == 0 then 'selected="selected"' else ''#-->>$T('pr-normal')</option>
+                  <option value="-1" <!--#if $rss[$feed]['priority'] == -1 then 'selected="selected"' else ''#-->>$T('pr-low')</option>
+                  <option value="-2" <!--#if $rss[$feed]['priority'] == -2 then 'selected="selected"' else ''#-->>$T('pr-paused')</option>
+                </select>
+              </td>
+              <td>
+                <select name="pp">
+                  <option value="" <!--#if $rss[$feed]['pp'] == "" then 'selected="selected"' else ''#-->>$T('default')</option>
+                  <option value="0" <!--#if $rss[$feed]['pp'] == "0" then 'selected="selected"' else ''#-->>$T('pp-none')</option>
+                  <option value="1" <!--#if $rss[$feed]['pp'] == "1" then 'selected="selected"' else ''#-->>$T('pp-repair')</option>
+                  <option value="2" <!--#if $rss[$feed]['pp'] == "2" then 'selected="selected"' else ''#-->>$T('pp-unpack')</option>
+                  <option value="3" <!--#if $rss[$feed]['pp'] == "3" then 'selected="selected"' else ''#-->>$T('pp-delete')</option>
+                </select>
+              </td>
+              <!--#if $rss[$feed]['pick_script']#-->
+                <td>
+                  <select name="script">
+                  <!--#for $sc in $script_list#-->
+                    <option value="$sc" <!--#if $sc == $rss[$feed]['script'] then 'selected="selected"' else ""#-->>$Tspec($sc)</option>
+                  <!--#end for#-->
+                  </select>
+                </td>
+              <!--#end if#-->
+              <td>
+                <input type="submit" class="Save" value="$T('button-save')" />
+              </td>
+            </tr>
+            </tbody>
+            </table>
+            </form>
+
+            <!-- add new filter -->
+            <form action="upd_rss_filter" method="post">
+            <input type="hidden" name="session" value="$session"/>
+            <input type="hidden" name="index" value="$rss[$feed]['filtercount']" />
+            <input type="hidden" name="feed" value="$feed" />
+            <table class="catTable">
+            <tbody>
+            <tr>
+              <td>
+                <input type="text" name="new_index" size="1" />
+              </td>
+              <td>
+                <select name="filter_type">
+                  <option value="A" selected="selected"> $T('rss-accept')</option>
+                  <option value="M"> $T('rss-must')</option>
+                  <option value="R"> $T('rss-reject')</option>
+                  <option value="C"> $T('rss-mustcat')</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" name="filter_text" value="" size="30" />
+              </td>
+              <!--#if $rss[$feed]['pick_cat']#-->
+                <td>
+                  <select name="cat">
+                  <!--#for $ct in $cat_list#-->
+                    <option value="$ct" <!--#if $ct == 'Default' then 'selected="selected"' else ""#-->>$Tspec($ct)</option>
+                  <!--#end for#-->
+                  </select>
+                </td>
+              <!--#end if#-->
+              <td>
+                <select name="priority">
+                  <option value="-100" selected="selected">$T('default')</option>
+                  <option value="2">$T('pr-force')</option>
+                  <option value="1">$T('pr-high')</option>
+                  <option value="0">$T('pr-normal')</option>
+                  <option value="-1">$T('pr-low')</option>
+                  <option value="-2">$T('pr-paused')</option>
+                </select>
+              </td>
+              <td>
+                <select name="pp">
+                  <option value="" selected="selected">$T('default')</option>
+                  <option value="0">$T('pp-none')</option>
+                  <option value="1">$T('pp-repair')</option>
+                  <option value="2">$T('pp-unpack')</option>
+                  <option value="3">$T('pp-delete')</option>
+                </select>
+              </td>
+              <!--#if $rss[$feed]['pick_script']#-->
+                <td>
+                  <select name="script">
+                  <!--#for $sc in $script_list#-->
+                    <option value="$sc" <!--#if $sc == 'Default' then 'selected="selected"' else ""#-->>$Tspec($sc)</option>
+                  <!--#end for#-->
+                  </select>
+                </td>
+              <!--#end if#-->
+              <td>
+                <input type="submit" class="Save" value="$T('button-add')" />
+              </td>
+            </tr>
+            </tbody>
+            </table>
+            </form>
+
+          <!--#set $odd = False#-->
+          <!--#set $fnum = 0#-->
+          <!--#for $filter in $rss[$feed].filters#-->
+              <!--#set $odd = not $odd#-->
+
+                <form action="upd_rss_filter" method="post">
+                <input type="hidden" name="session" value="$session"/>
+                <input type="hidden" name="index" value="$fnum" />
+                <input type="hidden" name="feed" value="$feed" />
+                <table class="catTable">
+                <tbody>
+                <tr class="<!--#if $odd then "alt" else ""#-->">
+                  <td>
+                    <input type="text" name="new_index" value="$fnum" size="1" />
+                  </td>
+                  <td>
+                    <select name="filter_type">
+                      <option value="A" <!--#if $filter[3] == "A" then 'selected="selected"' else ""#-->> $T('rss-accept')</option>
+                      <option value="M" <!--#if $filter[3] == "M" then 'selected="selected"' else ""#-->> $T('rss-must')</option>
+                      <option value="R" <!--#if $filter[3] == "R" then 'selected="selected"' else ""#-->> $T('rss-reject')</option>
+                      <option value="C" <!--#if $filter[3] == "C" then 'selected="selected"' else ""#-->> $T('rss-mustcat')</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" name="filter_text" value="$filter[4]" size="30" />
+                  </td>
+                  <!--#if $rss[$feed]['pick_cat']#-->
+                    <td>
+                      <select name="cat">
+                      <!--#for $ct in $cat_list#-->
+                        <option value="$ct" <!--#if $ct == $filter[0] then 'selected="selected"' else ""#-->>$Tspec($ct)</option>
+                      <!--#end for#-->
+                      </select>
+                    </td>
+                  <!--#end if#-->
+                  <td>
+                    <select name="priority">
+                      <option value="-100" <!--#if $filter[5] == "-100" then 'selected="selected"' else ""#-->>$T('default')</option>
+                      <option value="2" <!--#if $filter[5] == "2" then 'selected="selected"' else ""#-->>$T('pr-force')</option>
+                      <option value="1" <!--#if $filter[5] == "1" then 'selected="selected"' else ""#-->>$T('pr-high')</option>
+                      <option value="0" <!--#if $filter[5] == "0" then 'selected="selected"' else ""#-->>$T('pr-normal')</option>
+                      <option value="-1" <!--#if $filter[5] == "-1" then 'selected="selected"' else ""#-->>$T('pr-low')</option>
+                      <option value="-2" <!--#if $filter[5] == "-2" then 'selected="selected"' else ""#-->>$T('pr-paused')</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="pp">
+                      <option value="" <!--#if $filter[1] == "" then 'selected="selected"' else ""#-->>$T('default')</option>
+                      <option value="0" <!--#if $filter[1] == "0" then 'selected="selected"' else ""#-->>$T('pp-none')</option>
+                      <option value="1" <!--#if $filter[1] == "1" then 'selected="selected"' else ""#-->>$T('pp-repair')</option>
+                      <option value="2" <!--#if $filter[1] == "2" then 'selected="selected"' else ""#-->>$T('pp-unpack')</option>
+                      <option value="3" <!--#if $filter[1] == "3" then 'selected="selected"' else ""#-->>$T('pp-delete')</option>
+                    </select>
+                  </td>
+                  <!--#if $rss[$feed]['pick_script']#-->
+                    <td>
+                      <select name="script">
+                      <!--#for $sc in $script_list#-->
+                        <option value="$sc" <!--#if $sc == $filter[2] then 'selected="selected"' else ""#-->>$Tspec($sc)</option>
+                      <!--#end for#-->
+                      </select>
+                    </td>
+                  <!--#end if#-->
+                  <td>
+                    <input type="submit" class="Save" value="$T('button-save')" />
+                    <input type="button" class="delFilter" value="$T('button-x')" />
+                  </td>
+                </tr>
+                </tbody>
+                </table>
+                </form>
+
+              <!--#set $fnum = $fnum+1#-->
+          <!--#end for#-->
+
+              <form action="download_rss_feed" method="post">
+              <input type="hidden" name="session" value="$session"/>
+              <input type="hidden" name="feed" value="$feed" />
+                <div class="padding">
+                    <input type="button" class="testFeed" value="$T('button-preFeed')" />
+                    <input type="submit" value="$T('button-forceFeed')" />
+                    <input type="button" class="cleanFeed" value="$T('button-clear') $T('link-download')" />
+                </div>
+              </form>
+        </div>
+    </div>
+
+    <br/>
+    <div style="padding-left: 10px; border-bottom: 1px solid #DFDEDE;">
+        <ul class="tabs">
+            <li><a href="#">$T('rss-matched') <span class="count"><!--#echo len($matched)#--></span></a></li>
+            <li><a href="#">$T('rss-notMatched') <span class="count"><!--#echo len($unmatched)#--></span></a></li>
+            <li><a href="#">$T('rss-done') <span class="count"><!--#echo len($downloaded)#--></span></a></li>
+        </ul>
+    </div>
+
+    <div class="tab-content padTable">
+          <!--#if $matched#-->
+            <table class="catTable">
+
+            <!--#set $odd = False#-->
+            <!--#set $cur = 0#-->
+            <!--#for $job in $matched#-->
+              <!--#set $odd = not $odd#-->
+              <!--#set $cur = $cur+1#-->
+
+              <!--#if $cur == 1#-->
+                <thead>
+                  <tr>
+                    <th>$T('link-download')</th>
+                    <th>$T('rss-skip')</th>
+                    <th>$T('rss-filter')</th>
+                    <th>$T('sort-title')</th>
+                  </tr>
+                </thead>
+              <!--#end if#-->
+              <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
+                  <td>
+                    <form action="download" method="get">
+                        <input type="hidden" value="$feed" name="feed" />
+                        <input type="hidden" name="session" value="$session" />
+                        <input type="hidden" name="url" value="$job[0]" />
+                        <input type="hidden" name="nzbname" value="$job[4]" />
+                        <input type="submit" value="$T('link-download')" />
+                    </form>
+                  </td>
+                  <td class="align-center">$job[2]</td>
+                  <td class="align-center">
+                    <span>$job[3]</span>
+                  </td>
+                  <td>$job[1]</td>
+              </tr>
+            <!--#end for#-->
+            </table>
+
+          <!--#else#-->
+            $T('none')
+          <!--#end if#-->
+    </div>
+
+    <div class="tab-content padTable">
+          <!--#if $unmatched#-->
+            <table class="catTable">
+
+            <!--#set $odd = False#-->
+            <!--#set $cur = 0#-->
+            <!--#for $job in $unmatched#-->
+              <!--#set $odd = not $odd#-->
+              <!--#set $cur = $cur+1#-->
+
+              <!--#if $cur == 1#-->
+                <thead>
+                  <tr>
+                    <th>$T('link-download')</th>
+                    <th>$T('rss-skip')</th>
+                    <th>$T('rss-filter')</th>
+                    <th>$T('sort-title')</th>
+                  </tr>
+                </thead>
+              <!--#end if#-->
+              <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
+                  <td>
+                    <form action="download" method="get">
+                        <input type="hidden" value="$feed" name="feed" />
+                        <input type="hidden" name="session" value="$session" />
+                        <input type="hidden" name="url" value="$job[0]" />
+                        <input type="hidden" name="nzbname" value="$job[4]" />
+                        <input type="submit" value="$T('link-download')" />
+                    </form>
+                  </td>
+                  <td class="align-center">$job[2]</td>
+                  <td class="align-center">
+                    <span>$job[3]</span>
+                  </td>
+                  <td>$job[1]</td>
+              </tr>
+            <!--#end for#-->
+            </table>
+
+          <!--#else#-->
+            $T('none')
+          <!--#end if#-->
+    </div>
+
+
+    <div class="tab-content padTable">
+          <!--#if $downloaded#-->
+            <form action="clean_rss_jobs" method="post">
+            <input type="hidden" value="$feed" name="feed" />
+            <input type="hidden" name="session" value="$session" />
+            <table class="catTable">
+
+            <!--#set $odd = False#-->
+            <!--#set $cur = 0#-->
+            <!--#for $job in $downloaded#-->
+              <!--#set $odd = not $odd#-->
+              <!--#set $cur = $cur+1#-->
+
+              <!--#if $cur == 1#-->
+                <thead>
+                  <tr>
+                    <th>$T('sort-title')</th>
+                  </tr>
+                </thead>
+              <!--#end if#-->
+              <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
+                  <td>$job</td>
+              </tr>
+            <!--#end for#-->
+            </table>
+            </form>
+
+          <!--#else#-->
+            $T('none')
+          <!--#end if#-->
+    </div>
+
+<!--#end if#-->
+
+</div><!-- /colmask -->
+
+<script>
+\$(document).ready(function(){
+    \$('.delFeed').click(function(){
+        var theForm = \$(this).closest("form");
+        theForm.attr("action", "del_rss_feed").submit();
+    });
+    \$('.testFeed').click(function(){
+        var theForm = \$(this).closest("form");
+        theForm.attr("action", "test_rss_feed").submit();
+    });
+    \$('.cleanFeed').click(function(){
+        var theForm = \$(this).closest("form");
+        theForm.attr("action", "clean_rss_jobs").submit();
+    });
+    \$('.delFilter').click(function(){
+        var theForm = \$(this).closest("form");
+        theForm.attr("action", "del_rss_filter").submit();
+    });
+    \$(function() {
+        \$("ul.tabs").tabs("div.tab-content");
+    });
+
+});
+</script>
+
+<!--#include $webdir + "/_inc_footer_uc.tmpl"#-->

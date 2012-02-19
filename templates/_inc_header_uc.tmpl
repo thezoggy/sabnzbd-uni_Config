@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>SABnzbd $version - $T('queued'): $mbleft $T('MB')</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" type="text/css" href="/staticcfg/css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="/staticcfg/css/formalize.css" />
+        <link rel="stylesheet" type="text/css" href="/staticcfg/css/config.css" />
+        <!--[if !IE]>-->
+        <link rel="stylesheet" type="text/css" href="/staticcfg/css/ios.css" media="only screen and (max-device-width: 480px)" />
+        <!--<![endif]-->
+        <link rel="stylesheet" type="text/css" href="/staticcfg/css/smooth-grinder/jquery-ui-1.8.17.custom.css" />
+
+        <script src="/staticcfg/js/jquery-1.7.1.min.js"></script>
+        <script src="/staticcfg/js/jquery-ui-1.8.17.custom.min.js"></script>
+        <script src="/staticcfg/js/jquery.tools-1.2.6.min.js"></script>
+        <script src="/staticcfg/js/jquery.formalize-1.2.min.js"></script>
+        <script src="/staticcfg/js/jquery.form-2.95.js"></script>
+        <script src="/staticcfg/js/jquery-pathbrowser.js"></script>
+
+        <script type="text/javascript">
+            \$.Browser = {
+                defaults: {
+                    title:             'Choose Directory',
+                    url:               '/sabnzbd/api?mode=browse&output=json&apikey=$session',
+                    autocompleteURL:   '/sabnzbd/api?mode=browse&output=text&compact=1&apikey=$session'
+                }
+            };
+            var config_pane = "$pane";
+            var help_uri = "$help_uri";
+            var apikey = "$session";
+            var confirmWithoutSavingPrompt = "$T('Plush-confirmWithoutSavingPrompt')";
+            function config_success(){
+                \$('.saveButton').each(function(){
+                    \$(this).removeAttr("disabled").attr("value", "$T('button-saveChanges')");
+                });
+            }
+            function config_failure(){
+                \$('.saveButton').each(function(){
+                    \$(this).removeAttr("disabled").attr("value", "$T('smpl-failed')");
+                });
+            }
+
+            \$(document).ready(function(){
+
+                \$('.sabnzbd_restart').click(function(){
+                    \$('.sabnzbd_restart').each(function(){
+                        \$(this).attr("disabled", "disabled")
+                    });
+                    var msg = "$T('explain-Restart')";
+                    if(confirm( msg.replace(/\<br(\s*\/|)\>/g, '\n') )) {
+                        \$(this).attr("value", "$T('wizard-restarting')");
+                        location.href='../restart?session=$session';
+                    }
+                    \$('.sabnzbd_restart').each(function(){
+                        \$(this).removeAttr("disabled")
+                    });
+                    return false;
+                });
+
+                \$('#fullform').ajaxForm({
+                    beforeSubmit: function(){
+                        \$('.saveButton').each(function(){
+                            \$(this).attr("disabled", "disabled").attr("value", "$T('smpl-saving')");
+                        });
+                    },
+                    success: function(){
+                        setTimeout('config_success()', 1000)
+                    },
+                    error: function(){
+                        setTimeout('config_failure()', 1000)
+                    }
+                });
+
+                \$("#sidebar-trigger").click(function(){
+                    if( \$("#sidebar-trigger").hasClass("trigger-left") ) {
+                        \$("#sidebar").animate({marginLeft:"-150px", queue: false}, 250 );
+                        \$("#sidebar-pane").animate({marginLeft:"-150px", queue: false}, 250 );
+                        \$("#content").animate({left:"6px", queue: false}, 250 );
+                        \$("#sidebar-trigger").removeClass("trigger-left").addClass("trigger-right");
+                    } else {
+                        \$("#sidebar").animate({marginLeft:"0px", queue: false}, 250 );
+                        \$("#sidebar-pane").animate({marginLeft:"0px", queue: false}, 250 );
+                        \$("#content").animate({left:"156px", queue: false}, 250 );
+                        \$("#sidebar-trigger").removeClass("trigger-right").addClass("trigger-left");
+                    }
+                });
+
+            });
+  
+        </script>
+
+</head>
+<body class="$pane">
+    <div id="sidebar">
+        <a href="/sabnzbd/"><img src="/staticcfg/images/logo.png" width="120" height="45" id="logo" alt="[home]" /></a>
+        <div id="tab-container">
+            <a href="/config/">
+                <div #if $pane == "Config" then 'class="active"' else ""#>$T('menu-config')</div>
+            </a>
+            <a href="/config/general/">
+                <div #if $pane == "General" then 'class="active"' else ""#>$T('cmenu-general')</div>
+            </a>
+            <a href="/config/folders/">
+                <div #if $pane == "Folders" then 'class="active"' else ""#>$T('cmenu-folders')</div>
+            </a>
+            <a href="/config/switches/">
+                <div #if $pane == "Switches" then 'class="active"' else ""#>$T('cmenu-switches')</div>
+            </a>
+            <a href="/config/server/">
+                <div #if $pane == "Servers" then 'class="active"' else ""#>$T('cmenu-servers')</div>
+            </a>
+            <a href="/config/scheduling/">
+                <div #if $pane == "Scheduling" then 'class="active"' else ""#>$T('Plush-cmenu-scheduling')</div>
+            </a>
+            <a href="/config/notify/">
+                <div #if $pane == "Email" then 'class="active"' else ""#>$T('cmenu-notif')</div>
+            </a>
+            <a href="/config/indexers/">
+                <div #if $pane == "Index Sites" then 'class="active"' else ""#>$T('cmenu-newzbin')</div>
+            </a>
+            <a href="/config/categories/">
+                <div #if $pane == "Categories" then 'class="active"' else ""#>$T('cmenu-cat')</div>
+            </a>
+            <a href="/config/sorting/">
+                <div #if $pane == "Sorting" then 'class="active"' else ""#>$T('cmenu-sorting')</div>
+            </a>
+            <a href="/config/special/">
+                <div #if $pane == "Special" then 'class="active"' else ""#>$T('cmenu-special')</div>
+            </a>
+            <a href="/config/rss/">
+                <div #if $pane == "RSS" then 'class="active"' else ""#>$T('cmenu-rss')</div>
+            </a>
+            <br/>
+            <a href="$helpuri$help_uri" target="_blank">
+                <div>$T('menu-help')</div>
+            </a>
+        </div>
+    </div>
+<div id="sidebar-pane"><div id="sidebar-trigger" class="trigger-left"></div></div>
+    <div id="content">
+    <!-- Content start -->
