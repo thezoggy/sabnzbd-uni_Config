@@ -463,56 +463,6 @@ select .selected {
     font-weight: 700;
 }
 
-/* folder browser auto complete related */
-.ac_results {
-padding: 0px;
-border: 1px solid black;
-background-color: white;
-overflow: hidden;
-z-index: 99999;
-}
-
-.ac_results ul {
-width: 100%;
-list-style-position: outside;
-list-style: none;
-padding: 0;
-margin: 0;
-}
-
-.ac_results li {
-margin: 0px;
-padding: 2px 5px;
-cursor: default;
-display: block;
-/* 
-if width will be 100% horizontal scrollbar will apear 
-when scroll mode will be used
-*/
-/*width: 100%;*/
-font: menu;
-font-size: 12px;
-/* 
-it is very important, if line-height not setted or setted 
-in relative units scroll will be broken in firefox
-*/
-line-height: 16px;
-overflow: hidden;
-}
-
-.ac_loading {
-background: #FFF url('../images/loading16.gif') 100% 50% no-repeat;
-}
-
-.ac_odd {
-background-color: #eee;
-}
-
-.ac_over {
-background-color: #0A246A;
-color: #ffffff;
-}
-
 /* folder browser related */
 #fileBrowserDialog {
   max-height: 480px;
@@ -554,9 +504,28 @@ color: #ffffff;
 }
 
 .browserDialog.busy .ui-dialog-buttonpane {
-  background: url('../images/loading-bar.gif') 10px 50% no-repeat;
+  background: url('../images/loading-bar.gif') 10px 50% no-repeat !important;
 }
 .fileBrowser { margin-left: 5px !important; }
+
+/* jquery ui autocomplete overrides to make it look more like the old autocomplete */
+.ui-autocomplete { max-height: 200px; overflow-y: scroll; overflow-x: hidden; padding-right: 20px;}
+
+/* ie6 hack */
+* html .ui-autocomplete {
+  height: 100px;
+}
+.ui-menu .ui-menu-item {
+  background-color: #eee;
+}
+.ui-menu .ui-menu-item-alternate{
+  background-color: #fff;
+}
+.ui-menu a.ui-state-hover{
+  background: none;
+  background-color: #0A246A;
+  color: #fff;
+}
 
 .tab-content {
   background-color:#F8F4E7;
