@@ -509,6 +509,8 @@ select .selected {
 .fileBrowser { margin-left: 5px !important; }
 
 /* jquery ui autocomplete overrides to make it look more like the old autocomplete */
+.ui-autocomplete-loading { background: white url('../images/loading16.gif') right center no-repeat; }
+
 .ui-autocomplete { max-height: 200px; overflow-y: scroll; overflow-x: hidden; padding-right: 20px;}
 
 /* ie6 hack */
