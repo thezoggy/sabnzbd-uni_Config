@@ -72,10 +72,9 @@ $.fn.nFileBrowser = function (callback, options) {
     });
 
     // set up the browser and launch the dialog
-    var initialDir = options.field.val() || '';
-    if (options.initialDir) {
-        initialDir = options.initialDir;
-    }
+    // textbox (not saved) path > textbox (saved) path > none
+    var initialDir = options.field.val() || options.initialDir || '';
+
     browse(initialDir, options.url);
     //use custom title instead of default
     fileBrowserDialog.dialog('option', 'title', options.title);

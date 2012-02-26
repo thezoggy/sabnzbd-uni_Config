@@ -11,10 +11,10 @@
         <!--[if !IE]>-->
         <link rel="stylesheet" type="text/css" href="/staticcfg/css/ios.css" media="only screen and (max-device-width: 480px)" />
         <!--<![endif]-->
-        <link rel="stylesheet" type="text/css" href="/staticcfg/css/smooth-grinder/jquery-ui-1.8.17.custom.css" />
+        <link rel="stylesheet" type="text/css" href="/staticcfg/css/smooth-grinder/jquery-ui-1.8.18.custom.css" />
 
         <script src="/staticcfg/js/jquery-1.7.1.min.js"></script>
-        <script src="/staticcfg/js/jquery-ui-1.8.17.custom.min.js"></script>
+        <script src="/staticcfg/js/jquery-ui-1.8.18.custom.min.js"></script>
         <script src="/staticcfg/js/jquery.tools-1.2.6.min.js"></script>
         <script src="/staticcfg/js/jquery.formalize-1.2.min.js"></script>
         <script src="/staticcfg/js/jquery.form-2.95.js"></script>
@@ -67,11 +67,12 @@
                         });
                     },
                     success: function(){
-                        setTimeout('config_success()', 1000)
+                        setTimeout('config_success()', 1000);
                     },
                     error: function(){
-                        setTimeout('config_failure()', 1000)
-                    }
+                        setTimeout('config_failure()', 1000);
+                    },
+                    timeout: 3000
                 });
 
                 \$("#sidebar-trigger").click(function(){
