@@ -122,49 +122,51 @@
 
 <script>
 \$(document).ready(function(){
-    \$('#email_dir').fileBrowser({ title: 'Select $T('opt-email_dir')', key: 'email_dir' });
-    \$('#test_email').click(function(){
-        if( confirm(\$('#test_email').attr('rel')) ) {
+    \$('#email_dir').fileBrowser({ title: 'Select $T('opt-email_dir')' });
+    \$('#test_email').click(function () {
+        if (confirm(\$('#test_email').attr('rel'))) {
             \$.ajax({
-              type: "GET",
-              url: "../../tapi",
-              data: {mode:'test_email', apikey: '$session', output: 'json' },
-              beforeSend: function(){
-                \$('#test_email').attr("disabled", "disabled");
-                \$('#testmail-result').removeClass("success failure").addClass("loading").html('$T('post-Verifying')');
-              },
-              complete: function(){
-                \$('#test_email').removeAttr("disabled");
-                \$('#testmail-result').removeClass("loading");
-              },
-              success: function(data){
-                if(data.status == true)
-                  \$('#testmail-result').addClass("success").html('$T('smpl-emailsent')');
-                else
-                  \$('#testmail-result').addClass("failure").html(data.error);
-              }
+                type: "GET",
+                url: "../../tapi",
+                data: {mode: 'test_email', apikey: '$session', output: 'json' },
+                beforeSend: function () {
+                    \$('#test_email').attr("disabled", "disabled");
+                    \$('#testmail-result').removeClass("success failure").addClass("loading").html('$T('post-Verifying')');
+                },
+                complete: function () {
+                    \$('#test_email').removeAttr("disabled");
+                    \$('#testmail-result').removeClass("loading");
+                },
+                success: function (data) {
+                    if (data.status == true) {
+                      \$('#testmail-result').addClass("success").html('$T('smpl-emailsent')');
+                    } else {
+                      \$('#testmail-result').addClass("failure").html(data.error);
+                    }
+                }
             });
         }
     });
-    \$('#test_notification').click(function(){
+    \$('#test_notification').click(function () {
         \$.ajax({
-          type: "GET",
-          url: "../../tapi",
-          data: {mode:'test_notif', apikey: '$session', output: 'json' },
-          beforeSend: function(){
-            \$('#test_notification').attr("disabled", "disabled");
-            \$('#testnotice-result').removeClass("success failure").addClass("loading").html('$T('post-Verifying')');
-          },
-          complete: function(){
-            \$('#test_notification').removeAttr("disabled");
-            \$('#testnotice-result').removeClass("loading");
-          },
-          success: function(data){
-            if(data.status == true)
-              \$('#testnotice-result').addClass("success").html('$T('smpl-notesent')');
-            else
-              \$('#testnotice-result').addClass("failure").html(data.error);
-          }
+            type: "GET",
+            url: "../../tapi",
+            data: {mode: 'test_notif', apikey: '$session', output: 'json' },
+            beforeSend: function () {
+                \$('#test_notification').attr("disabled", "disabled");
+                \$('#testnotice-result').removeClass("success failure").addClass("loading").html('$T('post-Verifying')');
+            },
+            complete: function () {
+                \$('#test_notification').removeAttr("disabled");
+                \$('#testnotice-result').removeClass("loading");
+            },
+            success: function (data) {
+                if (data.status == true) {
+                  \$('#testnotice-result').addClass("success").html('$T('smpl-notesent')');
+                } else { 
+                  \$('#testnotice-result').addClass("failure").html(data.error);
+                }
+            }
         });
     });
 });
