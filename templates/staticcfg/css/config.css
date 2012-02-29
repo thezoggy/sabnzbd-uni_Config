@@ -865,3 +865,9 @@ ul.tabs a.current {
   margin-left: 6px;
 }
 
+.ui-tooltip-qrcode {
+   max-width: 320px;
+}
+.ui-tooltip-qrcode img{
+  margin: 0 auto;
+}

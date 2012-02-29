@@ -80,12 +80,14 @@
                     <label class="config" for="apikey">$T('opt-apikey')</label>
                     <input type="text" id="apikey" value="$session" size="35" />
                     <input type="button" value="$T('button-apikey')" id="generate_new_apikey" />
+                    <input type="button" value="$T('qr-code')" title="$T('explain-qr-code')" class="show_qrcode" rel="$session" />
                     <span class="desc">$T('explain-apikey')</span>
                 </div>
                 <div class="field-pair">
                     <label class="config" for="nzbkey">$T('opt-nzbkey')</label>
                     <input type="text" id="nzbkey" value="$nzb_key" size="35" />
                     <input type="button" value="$T('button-apikey')" id="generate_new_nzbkey" />
+                    <input type="button" value="$T('qr-code')" title="$T('explain-qr-code')" class="show_qrcode" rel="$nzb_key" />
                     <span class="desc">$T('explain-nzbkey')</span>
                 </div>
                 <div class="field-pair">
@@ -159,15 +161,18 @@
     <div class="padding alt">
         <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
         <input type="button" value="$T('button-restart') SABnzbd" class="sabnzbd_restart" />
+        <br/><br/>
+        <a href="#" class="g-button green">$T('button-saveChanges')</a>
+        <a href="#" class="g-button red">$T('button-restart') SABnzbd</a>
     </div>
     </form>
 </div><!-- /colmask -->
 
 <script>
 \$(document).ready(function(){
-    \$('#apikey, #nzbkey').click(function(){ \$(this).select() });
-    \$('#generate_new_apikey').click(function(){
-      if( confirm("$T('Plush-confirm')") ) {
+    \$('#apikey, #nzbkey').click(function () { \$(this).select() });
+    \$('#generate_new_apikey').click(function () {
+      if (confirm("$T('Plush-confirm')")) {
         $.ajax({
           type: "POST",
           url: "../../tapi",
@@ -179,8 +184,8 @@
         });
       }
     });
-    \$('#generate_new_nzbkey').click(function(){
-      if( confirm("$T('Plush-confirm')") ) {
+    \$('#generate_new_nzbkey').click(function () {
+      if (confirm("$T('Plush-confirm')")) {
         $.ajax({
           type: "POST",
           url: "../../tapi",
@@ -192,6 +197,34 @@
         });
       }
     });
+
+    \$('.show_qrcode').each(function () {
+        var qrkey = \$(this).attr('rel'),
+        qrcode = \$('<img />', {
+            src: 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + qrkey,
+            alt: 'loading...',
+            width: 300,
+            height: 300
+        });
+        \$(this).qtip( {
+            content: {
+                text: qrcode
+            },
+            position: {
+                my: 'center',
+                at: 'center',
+                viewpoint: \$(window)
+            },
+            show: {
+                event: 'click',
+                solo: true,
+                modal: true
+            },
+            hide: false,
+            style: 'ui-tooltip-light ui-tooltip-rounded ui-tooltip-shadow ui-tooltip-qrcode'
+        });
+    });
+
 });
 </script>
 
