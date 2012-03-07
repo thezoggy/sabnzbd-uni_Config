@@ -104,6 +104,9 @@
         </div><!-- /col2 -->
         <div class="col1">
             <fieldset>
+                <div class="field-pair">
+                    <h5 class="darkred nomargin">$T('base-folder'): <span class="path">$my_lcldata</span></h5>
+                </div>
                 <div class="field-pair alt <!--#if int($have_ssl) == 0 then "disabled" else ""#-->">
                     <label class="config" for="enable_https">$T('opt-enable_https')</label>
                     <input type="checkbox" name="enable_https" id="enable_https" value="1" <!--#if int($enable_https) > 0 then 'checked="checked"' else ""#--> <!--#if int($have_ssl) == 0 then "disabled" else ""#--> />
