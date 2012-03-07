@@ -1,5 +1,0 @@
-/* ios fix for scrolling -- ios5 new feature */
-html {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
