@@ -33,6 +33,8 @@
 
             \$(document).ready(function () {
 
+                \$('.col2 H3').click(function () { \$(this).parent().next().toggle() });
+
                 \$('.sabnzbd_restart').click(function () {
                     \$('.sabnzbd_restart').each(function () {
                         \$(this).attr("disabled", "disabled");
