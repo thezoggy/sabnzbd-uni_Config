@@ -27,7 +27,7 @@
                 </div>
                 <div class="field-pair alt">
                     <label class="config" for="port">$T('srv-port')</label>
-                    <input type="text" name="port" id="port" size="8" />
+                    <input type="number" name="port" id="port" size="8" min="0" />
                 </div>
                 <div class="field-pair">
                     <label class="config" for="username">$T('srv-username')</label>
@@ -39,15 +39,15 @@
                 </div>
                 <div class="field-pair">
                     <label class="config" for="connections">$T('srv-connections')</label>
-                    <input type="text" name="connections" id="connections" size="8" />
+                    <input type="number" name="connections" id="connections" size="8" min="0" max="100" />
                 </div>
                 <div class="field-pair alt">
                     <label class="config" for="retention">$T('srv-retention')</label>
-                    <input type="text" name="retention" id="retention" size="8" /> <i>$T('days')</i>
+                    <input type="number" name="retention" id="retention" size="8" min="0" /> <i>$T('days')</i>
                 </div>
                 <div class="field-pair">
                     <label class="config" for="timeout">$T('srv-timeout')</label>
-                    <input type="text" name="timeout" id="timeout" size="8" /> <i>$T('seconds')</i>
+                    <input type="number" name="timeout" id="timeout" size="8" min="30" /> <i>$T('seconds')</i>
                 </div>
                 <div class="field-pair alt <!--#if int($have_ssl) == 0 then "disabled" else ""#-->">
                     <label class="config" for="ssl">$T('srv-ssl')</label>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="field-pair alt">
                     <label class="config" for="port$cur">$T('srv-port')</label>
-                    <input type="text" name="port" id="port$cur" value="$servers[$server]['port']" size="8" />
+                    <input type="number" name="port" id="port$cur" value="$servers[$server]['port']" size="8" min="0" />
                 </div>
                 <div class="field-pair">
                     <label class="config" for="username$cur">$T('srv-username')</label>
@@ -122,15 +122,15 @@
                 </div>
                 <div class="field-pair">
                     <label class="config" for="connections$cur">$T('srv-connections')</label>
-                    <input type="text" name="connections" id="connections$cur" value="$servers[$server]['connections']" size="8" />
+                    <input type="number" name="connections" id="connections$cur" value="$servers[$server]['connections']" size="8" min="0" max="100" />
                 </div>
                 <div class="field-pair alt">
                     <label class="config" for="retention$cur">$T('srv-retention')</label>
-                    <input type="text" name="retention" id="retention$cur" value="$servers[$server]['retention']" size="8" /> <i>$T('days')</i>
+                    <input type="number" name="retention" id="retention$cur" value="$servers[$server]['retention']" size="8" min="0" /> <i>$T('days')</i>
                 </div>
                 <div class="field-pair">
                     <label class="config" for="timeout$cur">$T('srv-timeout')</label>
-                    <input type="text" name="timeout" id="timeout$cur" value="$servers[$server]['timeout']" size="8" /> <i>$T('seconds')</i>
+                    <input type="number" name="timeout" id="timeout$cur" value="$servers[$server]['timeout']" size="8" min="30" /> <i>$T('seconds')</i>
                 </div>
                 <div class="field-pair alt <!--#if int($have_ssl) == 0 then "disabled" else ""#-->">
                     <label class="config" for="ssl$cur">$T('srv-ssl')</label>
