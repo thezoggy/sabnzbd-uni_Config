@@ -48,7 +48,7 @@
                         <td class="title">
                             <div class="subscription-title">
                                 <a href="?feed=$rss[$feed_item]['link']" class="path feed">
-                                    <div class="favicon" style="background-image: url(&quot;http://www.google.com/s2/favicons?domain=$rss[$feed_item]['uri']&amp;alt=feed&quot;);"></div>
+                                    <div class="favicon" style="background-image: url(&quot;http://www.google.com/s2/favicons?domain=$rss[$feed_item]['baselink']&amp;alt=feed&quot;);"></div>
                                     <span class="<!--#if int($rss[$feed_item]['enable']) != 0 then 'feed_enabled"' else "feed_disabled"#-->">$feed_item</span>
                                 </a>
                             </div>
