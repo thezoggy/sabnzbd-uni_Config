@@ -10,6 +10,7 @@
         <p>$T('explain-RSS')</p>
 
                 <form action="add_rss_feed" method="post" novalidate>
+                <input type="hidden" name="session" value="$session">
                 <table class="catTable">
                     <tr>
                       <th>&nbsp;</th>
@@ -18,13 +19,9 @@
                       <th>&nbsp;</th>
                     </tr>
                     <tr class="even">
-                        <td>
-                            <input type="hidden" name="session" value="$session">
-                            <input type="hidden" value="1" name="table">
-                            <input type="checkbox" name="enable" id="enable" value="1" />
-                        </td>
-                        <td width="190"><input type="text" name="feed" size="25" value="$feed" placeholder="$feed" /></td>
-                        <td><input type="url" name="uri" size="75" /></td>
+                        <td><input type="checkbox" name="enable" value="1" /></td>
+                        <td><input type="text" name="feed" size="20" value="$feed" placeholder="unique feed name" /></td>
+                        <td><input type="url" name="uri" size="35" /></td>
                         <td class="nowrap">
                             <input type="submit" class="Save" value="$T('button-add')" />
                         </td>
@@ -32,30 +29,59 @@
                 </table>
                 </form>
 
-            <!--#set $feeds = sorted($rss.keys(), cmp=lambda x,y: cmp(x.lower(), y.lower()))#-->
-            <!--#set $odd = True#-->
-            <!--#for $feed_item in $feeds#-->
-                <!--#set $odd = not $odd#-->
+                <br/>
+
                 <form action="save_rss_feed" method="post" novalidate>
                 <input type="hidden" name="session" value="$session" />
-                <input type="hidden" name="feed" value="$feed_item" />
-                <table class="catTable">
-                    <tr class="<!--#if $odd then "alt" else ""#-->" >
-                        <td><input type="checkbox" name="enable" value="1" <!--#if int($rss[$feed_item]['enable']) != 0 then 'checked="checked"' else ""#--> /></td>
-                        <td width="190">
-                            <a href="?feed=$rss[$feed_item]['link']" class="path feed"><span class="<!--#if int($rss[$feed_item]['enable']) != 0 then 'feed_enabled"' else "feed_disabled"#-->">$feed_item</span></a> 
+                <table id="subscriptions">
+                    <tbody>
+
+            <!--#set $feeds = sorted($rss.keys(), cmp=lambda x,y: cmp(x.lower(), y.lower()))#-->
+            <!--#set $odd = False#-->
+            <!--#for $feed_item in $feeds#-->
+                <!--#set $odd = not $odd#-->
+
+                    <tr class="data-row <!--#if $odd then "alt" else ""#-->" >
+                        <td class="chk">
+                            <input type="checkbox" class="toggleFeedCheckbox" name="enable" value="1" <!--#if int($rss[$feed_item]['enable']) != 0 then 'checked="checked"' else ""#--> rel="$feed_item" />
+                        </td>
+                        <td class="title">
+                            <div class="subscription-title">
+                                <a href="?feed=$rss[$feed_item]['link']" class="path feed">
+                                    <div class="favicon" style="background-image: url(&quot;http://www.google.com/s2/favicons?domain=$rss[$feed_item]['uri']&amp;alt=feed&quot;);"></div>
+                                    <span class="<!--#if int($rss[$feed_item]['enable']) != 0 then 'feed_enabled"' else "feed_disabled"#-->">$feed_item</span>
+                                </a>
+                            </div>
                             <!-- <input type="text" name="newfeed" value="$feed_item" size="25" readonly="readonly" class="readonly" /> -->
                         </td>
-                        <td><input type="url" name="uri" value="$rss[$feed_item]['uri']" size="75" /></td>
-                        <td class="nowrap">
-                            <input type="submit" value="$T('button-save')" />
-                            <input type="button" class="delFeed" value="$T('button-x')" />
-                            <input type="button" class="testFeed" value="$T('Read')" />
+                        <td class="controls">
+                            <input type="button" class="testFeed" value="$T('Read')" rel="$feed_item" />
+                            <input type="hidden" name="uri" value="$rss[$feed_item]['uri']" size="75" />
+                            <input type="button" class="editFeed" value="$T('Edit') URL" rel="$feed_item" />
+                            <input type="button" class="delFeed" value="$T('button-x')" rel="$feed_item" />
                         </td>
                     </tr>
+                    <tr class="feed-row <!--#if $odd then "alt" else ""#-->">
+                        <td></td>
+                        <td colspan="2">
+                            <div>$rss[$feed_item]['uri']</div>
+                        </td>
+                    </tr>
+
+            <!--#end for#-->
+
+                    </tbody>
                 </table>
                 </form>
-            <!--#end for#-->
+
+            <!--#if $feeds#-->
+                <br/>
+
+                <form action="rss_now" method="post" novalidate>
+                    <input type="hidden" name="session" value="$session" />
+                    <input type="submit" class="readAll" value="$T('button-rssNow')" />
+                </form>
+            <!--#end if#-->
 
         </div>
     </div>
@@ -317,7 +343,7 @@
               <input type="hidden" name="session" value="$session"/>
               <input type="hidden" name="feed" value="$feed" />
                 <div class="padding">
-                    <input type="button" class="testFeed" value="$T('button-preFeed')" />
+                    <input type="button" class="testFeed" value="$T('button-preFeed')" rel="$feed" />
                     <input type="submit" value="$T('button-forceFeed')" />
                     <input type="button" class="cleanFeed" value="$T('button-clear') $T('link-download')" />
                 </div>
@@ -461,14 +487,57 @@
 
 <script>
 \$(document).ready(function(){
+    \$('.editFeed').click(function(){
+        var oldURI = \$(this).prev().val();
+        var newURI = prompt("$T('feed') URL", oldURI );
+        if(newURI != "" && newURI !== null) {
+            var whichFeed = \$(this).attr("rel");
+            \$.ajax({
+              type: "POST",
+              url: "save_rss_feed",
+              data: {feed: whichFeed, uri: newURI, session: "$session" }
+            }).done(function( msg ) {
+              location.reload();
+            });
+        } else { 
+            return false;
+        }
+    });
+
     \$('.delFeed').click(function(){
-        var theForm = \$(this).closest("form");
-        theForm.attr("action", "del_rss_feed").submit();
+        var whichFeed = \$(this).attr("rel");
+        \$.ajax({
+          type: "POST",
+          url: "del_rss_feed",
+          data: {feed: whichFeed, session: "$session" }
+        }).done(function( msg ) {
+          location.reload();
+        });
     });
+
     \$('.testFeed').click(function(){
-        var theForm = \$(this).closest("form");
-        theForm.attr("action", "test_rss_feed").submit();
+        var whichFeed = \$(this).attr("rel");
+        \$.ajax({
+          type: "POST",
+          url: "test_rss_feed",
+          data: {feed: whichFeed, session: "$session" }
+        }).done(function( msg ) {
+            location = '?feed=' + whichFeed;
+          // location.reload();
+        });
     });
+
+    \$('.toggleFeedCheckbox').click(function(){
+        var whichFeed = \$(this).attr("rel");
+        \$.ajax({
+          type: "POST",
+          url: "toggle_rss_feed",
+          data: {feed: whichFeed, session: "$session" }
+        }).done(function() {
+          location.reload();
+        });
+    });
+
     \$('.cleanFeed').click(function(){
         var theForm = \$(this).closest("form");
         theForm.attr("action", "clean_rss_jobs").submit();
