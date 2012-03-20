@@ -63,9 +63,9 @@
                         <select name="language" id="language" id="language" class="select">
                         <!--#for $webline in $lang_list#-->
                             <!--#if $webline[0].lower() == $language.lower()#-->
-                                <option value="$webline[0]" selected="selected" class="flag selected" style="background-image:url(/staticcfg/images/flags/${webline[0].lower()}.png)">$webline[1]</option>
+                                <option value="$webline[0]" selected="selected" class="selected">$webline[1]</option>
                             <!--#else#-->
-                                <option value="$webline[0]" class="flag" style="background-image:url(/staticcfg/images/flags/${webline[0].lower()}.png)">$webline[1]</option>
+                                <option value="$webline[0]">$webline[1]</option>
                             <!--#end if#-->
                         <!--#end for#-->
                         </select>
