@@ -229,24 +229,24 @@
         </div><!-- /col2 -->
         <div class="col1">
             <fieldset>
-                <div class="field-pair alt <!--#if not $nt then 'disabled="disabled"' else "" #-->">
+                <div class="field-pair alt">
                     <label class="config" for="folder_rename">$T('opt-folder_rename')</label>
-                    <input type="checkbox" name="folder_rename" id="folder_rename" value="1" <!--#if int($folder_rename) > 0 then 'checked="checked"' else ""#--> <!--#if not $nt then 'readonly="readonly" disabled="disabled"' else "" #--> />
+                    <input type="checkbox" name="folder_rename" id="folder_rename" value="1" <!--#if int($folder_rename) > 0 then 'checked="checked"' else ""#--> />
                     <span class="desc">$T('explain-folder_rename')</span>
                 </div>
-                <div class="field-pair <!--#if not $nt then 'disabled="disabled"' else "" #-->">
+                <div class="field-pair">
                     <label class="config" for="replace_spaces">$T('opt-replace_spaces')</label>
-                    <input type="checkbox" name="replace_spaces" id="replace_spaces" value="1" <!--#if int($replace_spaces) > 0 then 'checked="checked"' else ""#--> <!--#if not $nt then 'readonly="readonly" disabled="disabled"' else "" #--> />
+                    <input type="checkbox" name="replace_spaces" id="replace_spaces" value="1" <!--#if int($replace_spaces) > 0 then 'checked="checked"' else ""#--> />
                     <span class="desc">$T('explain-replace_spaces')</span>
                 </div>
-                <div class="field-pair alt <!--#if not $nt then 'disabled="disabled"' else "" #-->">
+                <div class="field-pair">
                     <label class="config" for="replace_dots">$T('opt-replace_dots')</label>
-                    <input type="checkbox" name="replace_dots" id="replace_dots" value="1" <!--#if int($replace_dots) > 0 then 'checked="checked"' else ""#--> <!--#if not $nt then 'readonly="readonly" disabled="disabled"' else "" #--> />
+                    <input type="checkbox" name="replace_dots" id="replace_dots" value="1" <!--#if int($replace_dots) > 0 then 'checked="checked"' else ""#--> />
                     <span class="desc">$T('explain-replace_dots')</span>
                 </div>
-                <div class="field-pair <!--#if not $nt then 'disabled="disabled"' else "" #-->">
+                <div class="field-pair">
                     <label class="config" for="replace_illegal">$T('opt-replace_illegal')</label>
-                    <input type="checkbox" name="replace_illegal" id="replace_illegal" value="1" <!--#if int($replace_illegal) > 0 then 'checked="checked"' else ""#--> <!--#if not $nt then 'readonly="readonly" disabled="disabled"' else "" #--> />
+                    <input type="checkbox" name="replace_illegal" id="replace_illegal" value="1" <!--#if int($replace_illegal) > 0 then 'checked="checked"' else ""#--> />
                     <span class="desc">$T('explain-replace_illegal')</span>
                 </div>
                 <div class="field-pair">
@@ -281,9 +281,9 @@
                     <input type="text" name="quota_day" id="quota_day" value="$quota_day" size="20" />
                     <span class="desc">$T('explain-quota_day')</span>
                 </div>
-                <div class="field-pair <!--#if not $nt then 'disabled="disabled"' else "" #-->">
+                <div class="field-pair">
                     <label class="config" for="quota_resume">$T('opt-quota_resume')</label>
-                    <input type="checkbox" name="quota_resume" id="quota_resume" value="1" <!--#if int($quota_resume) > 0 then 'checked="checked"' else ""#--> <!--#if not $nt then 'readonly="readonly" disabled="disabled"' else "" #--> />
+                    <input type="checkbox" name="quota_resume" id="quota_resume" value="1" <!--#if int($quota_resume) > 0 then 'checked="checked"' else ""#--> />
                     <span class="desc">$T('explain-quota_resume')</span>
                 </div>
                 <div class="field-pair">
