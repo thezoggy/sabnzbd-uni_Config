@@ -42,7 +42,7 @@
                     var msg = "$T('explain-Restart')";
                     if (confirm(msg.replace(/\<br(\s*\/|)\>/g, '\n'))) {
                         \$(this).attr("value", "$T('wizard-restarting')");
-                        location.href = '../../restart?session=$session';
+                        location.href = '../../config/restart?session=$session';
                     }
                     \$('.sabnzbd_restart').each(function () {
                         \$(this).removeAttr("disabled");
@@ -86,7 +86,7 @@
 </head>
 <body class="$pane">
     <div id="sidebar">
-        <a href="../"><img src="../../staticcfg/images/logo.png" width="120" height="45" id="logo" alt="[home]" /></a>
+        <a href="../../"><img src="../../staticcfg/images/logo.png" width="120" height="45" id="logo" alt="[home]" /></a>
         <div id="tab-container">
             <a href="../../config/">
                 <div #if $pane == "Config" then 'class="active"' else ""#>$T('menu-config')</div>
