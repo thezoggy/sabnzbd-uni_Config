@@ -36,10 +36,10 @@
                 <table id="subscriptions">
                     <tbody>
 
-            <!--#set $feeds = sorted($rss.keys(), cmp=lambda x,y: cmp(x.lower(), y.lower()))#-->
-            <!--#set $odd = False#-->
-            <!--#for $feed_item in $feeds#-->
-                <!--#set $odd = not $odd#-->
+            <!--#set $feeds = sorted($rss.keys(), cmp=lambda x,y: cmp(x.lower(), y.lower()))#--><!--#slurp#-->
+            <!--#set $odd = False#--><!--#slurp#-->
+            <!--#for $feed_item in $feeds#--><!--#slurp#-->
+                <!--#set $odd = not $odd#--><!--#slurp#-->
 
                     <tr class="data-row <!--#if $odd then "alt" else ""#-->" >
                         <td class="chk">
@@ -109,7 +109,7 @@
 
     <div class="section">
         <div class="padTable">
-          <h2 class="nomargin activeRSS"><a href="/config/rss/">$T('cmenu-rss')</a> &raquo; <a href="$rss[$active_feed]['uri']" onclick="window.open(this.href); return false;">$active_feed</a></h2>
+          <h2 class="nomargin activeRSS"><a href="${root}config/rss/">$T('cmenu-rss')</a> &raquo; <a href="$rss[$active_feed]['uri']" onclick="window.open(this.href); return false;">$active_feed</a></h2>
           <!--#if $error#-->
             <h3 class="darkred">$error</h3>
           <!--#end if#-->
@@ -156,7 +156,7 @@
               <td>
                 <select name="cat">
                 <!--#for $ct in $cat_list#-->
-                  <option value="$ct" <!--#if $ct == $rss[$feed]['cat'] then 'selected="selected"' else ""#-->>$Tspec($ct)</option>
+                  <option value="$ct" <!--#if $ct == $rss[$feed]['cat'] then 'selected="selected"' else ""#-->>$Tspec($ct)</option><!--#slurp#-->
                 <!--#end for#-->
                 </select>
               </td>
@@ -184,7 +184,7 @@
                 <td>
                   <select name="script">
                   <!--#for $sc in $script_list#-->
-                    <option value="$sc" <!--#if $sc == $rss[$feed]['script'] then 'selected="selected"' else ""#-->>$Tspec($sc)</option>
+                    <option value="$sc" <!--#if $sc == $rss[$feed]['script'] then 'selected="selected"' else ""#-->>$Tspec($sc)</option><!--#slurp#-->
                   <!--#end for#-->
                   </select>
                 </td>
@@ -223,7 +223,7 @@
                 <td>
                   <select name="cat">
                   <!--#for $ct in $cat_list#-->
-                    <option value="$ct" <!--#if $ct == 'Default' then 'selected="selected"' else ""#-->>$Tspec($ct)</option>
+                    <option value="$ct" <!--#if $ct == 'Default' then 'selected="selected"' else ""#-->>$Tspec($ct)</option><!--#slurp#-->
                   <!--#end for#-->
                   </select>
                 </td>
@@ -251,7 +251,7 @@
                 <td>
                   <select name="script">
                   <!--#for $sc in $script_list#-->
-                    <option value="$sc" <!--#if $sc == 'Default' then 'selected="selected"' else ""#-->>$Tspec($sc)</option>
+                    <option value="$sc" <!--#if $sc == 'Default' then 'selected="selected"' else ""#-->>$Tspec($sc)</option><!--#slurp#-->
                   <!--#end for#-->
                   </select>
                 </td>
@@ -264,10 +264,10 @@
             </table>
             </form>
 
-          <!--#set $odd = False#-->
-          <!--#set $fnum = 0#-->
-          <!--#for $filter in $rss[$feed].filters#-->
-              <!--#set $odd = not $odd#-->
+          <!--#set $odd = False#--><!--#slurp#-->
+          <!--#set $fnum = 0#--><!--#slurp#-->
+          <!--#for $filter in $rss[$feed].filters#--><!--#slurp#-->
+              <!--#set $odd = not $odd#--><!--#slurp#-->
 
                 <form action="upd_rss_filter" method="post">
                 <input type="hidden" name="session" value="$session"/>
@@ -294,7 +294,7 @@
                     <td>
                       <select name="cat">
                       <!--#for $ct in $cat_list#-->
-                        <option value="$ct" <!--#if $ct == $filter[0] then 'selected="selected"' else ""#-->>$Tspec($ct)</option>
+                        <option value="$ct" <!--#if $ct == $filter[0] then 'selected="selected"' else ""#-->>$Tspec($ct)</option><!--#slurp#-->
                       <!--#end for#-->
                       </select>
                     </td>
@@ -322,7 +322,7 @@
                     <td>
                       <select name="script">
                       <!--#for $sc in $script_list#-->
-                        <option value="$sc" <!--#if $sc == $filter[2] then 'selected="selected"' else ""#-->>$Tspec($sc)</option>
+                        <option value="$sc" <!--#if $sc == $filter[2] then 'selected="selected"' else ""#-->>$Tspec($sc)</option><!--#slurp#-->
                       <!--#end for#-->
                       </select>
                     </td>
@@ -364,11 +364,11 @@
           <!--#if $matched#-->
             <table class="catTable">
 
-            <!--#set $odd = False#-->
-            <!--#set $cur = 0#-->
-            <!--#for $job in $matched#-->
-              <!--#set $odd = not $odd#-->
-              <!--#set $cur = $cur+1#-->
+            <!--#set $odd = False#--><!--#slurp#-->
+            <!--#set $cur = 0#--><!--#slurp#-->
+            <!--#for $job in $matched#--><!--#slurp#-->
+              <!--#set $odd = not $odd#--><!--#slurp#-->
+              <!--#set $cur = $cur+1#--><!--#slurp#-->
 
               <!--#if $cur == 1#-->
                 <thead>
@@ -408,11 +408,11 @@
           <!--#if $unmatched#-->
             <table class="catTable">
 
-            <!--#set $odd = False#-->
-            <!--#set $cur = 0#-->
-            <!--#for $job in $unmatched#-->
-              <!--#set $odd = not $odd#-->
-              <!--#set $cur = $cur+1#-->
+            <!--#set $odd = False#--><!--#slurp#-->
+            <!--#set $cur = 0#--><!--#slurp#-->
+            <!--#for $job in $unmatched#--><!--#slurp#-->
+              <!--#set $odd = not $odd#--><!--#slurp#-->
+              <!--#set $cur = $cur+1#--><!--#slurp#-->
 
               <!--#if $cur == 1#-->
                 <thead>
@@ -456,11 +456,11 @@
             <input type="hidden" name="session" value="$session" />
             <table class="catTable">
 
-            <!--#set $odd = False#-->
-            <!--#set $cur = 0#-->
-            <!--#for $job in $downloaded#-->
-              <!--#set $odd = not $odd#-->
-              <!--#set $cur = $cur+1#-->
+            <!--#set $odd = False#--><!--#slurp#-->
+            <!--#set $cur = 0#--><!--#slurp#-->
+            <!--#for $job in $downloaded#--><!--#slurp#-->
+              <!--#set $odd = not $odd#--><!--#slurp#-->
+              <!--#set $cur = $cur+1#--><!--#slurp#-->
 
               <!--#if $cur == 1#-->
                 <thead>

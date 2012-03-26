@@ -5,15 +5,21 @@
         <title>SABnzbd $version - $T('queued'): $mbleft $T('MB')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" type="text/css" href="../../staticcfg/css/style.css" />
-        <script src="../../staticcfg/js/script.js"></script>
+#if $pane == "Config"#
+  #set global $root = '../'#
+#else#
+  #set global $root = '../../'#
+#end if#
+
+        <link rel="stylesheet" type="text/css" href="${root}staticcfg/css/style.css" />
+        <script src="${root}staticcfg/js/script.js"></script>
 
         <script type="text/javascript">
             \$.Browser = {
                 defaults: {
                     title:             'Choose Directory',
-                    url:               '../../api?mode=browse&output=json&apikey=$session',
-                    autocompleteURL:   '../../api?mode=browse&output=json&compact=1&apikey=$session'
+                    url:               '${root}api?mode=browse&output=json&apikey=$session',
+                    autocompleteURL:   '${root}api?mode=browse&output=json&compact=1&apikey=$session'
                 }
             };
             var config_pane = "$pane";
@@ -42,7 +48,7 @@
                     var msg = "$T('explain-Restart')";
                     if (confirm(msg.replace(/\<br(\s*\/|)\>/g, '\n'))) {
                         \$(this).attr("value", "$T('wizard-restarting')");
-                        location.href = '../../config/restart?session=$session';
+                        location.href = '${root}config/restart?session=$session';
                     }
                     \$('.sabnzbd_restart').each(function () {
                         \$(this).removeAttr("disabled");
@@ -86,42 +92,42 @@
 </head>
 <body class="$pane">
     <div id="sidebar">
-        <a href="../../"><img src="../../staticcfg/images/logo.png" width="120" height="45" id="logo" alt="[home]" /></a>
+        <a href="${root}"><img src="${root}staticcfg/images/logo.png" width="120" height="45" id="logo" alt="[home]" /></a>
         <div id="tab-container">
-            <a href="../../config/">
+            <a href="${root}config/">
                 <div #if $pane == "Config" then 'class="active"' else ""#>$T('menu-config')</div>
             </a>
-            <a href="../../config/general/">
+            <a href="${root}config/general/">
                 <div #if $pane == "General" then 'class="active"' else ""#>$T('cmenu-general')</div>
             </a>
-            <a href="../../config/folders/">
+            <a href="${root}config/folders/">
                 <div #if $pane == "Folders" then 'class="active"' else ""#>$T('cmenu-folders')</div>
             </a>
-            <a href="../../config/switches/">
+            <a href="${root}config/switches/">
                 <div #if $pane == "Switches" then 'class="active"' else ""#>$T('cmenu-switches')</div>
             </a>
-            <a href="../../config/server/">
+            <a href="${root}config/server/">
                 <div #if $pane == "Servers" then 'class="active"' else ""#>$T('cmenu-servers')</div>
             </a>
-            <a href="../../config/scheduling/">
+            <a href="${root}config/scheduling/">
                 <div #if $pane == "Scheduling" then 'class="active"' else ""#>$T('Plush-cmenu-scheduling')</div>
             </a>
-            <a href="../../config/notify/">
+            <a href="${root}config/notify/">
                 <div #if $pane == "Email" then 'class="active"' else ""#>$T('cmenu-notif')</div>
             </a>
-            <a href="../../config/indexers/">
+            <a href="${root}config/indexers/">
                 <div #if $pane == "Index Sites" then 'class="active"' else ""#>$T('cmenu-newzbin')</div>
             </a>
-            <a href="../../config/categories/">
+            <a href="${root}config/categories/">
                 <div #if $pane == "Categories" then 'class="active"' else ""#>$T('cmenu-cat')</div>
             </a>
-            <a href="../../config/sorting/">
+            <a href="${root}config/sorting/">
                 <div #if $pane == "Sorting" then 'class="active"' else ""#>$T('cmenu-sorting')</div>
             </a>
-            <a href="../../config/special/">
+            <a href="${root}config/special/">
                 <div #if $pane == "Special" then 'class="active"' else ""#>$T('cmenu-special')</div>
             </a>
-            <a href="../../config/rss/">
+            <a href="${root}config/rss/">
                 <div #if $pane == "RSS" then 'class="active"' else ""#>$T('cmenu-rss')</div>
             </a>
             <br/>
