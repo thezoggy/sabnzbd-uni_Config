@@ -1,0 +1,641 @@
+/* fix the normalize overflow since we use a sidebar and don't want the overflow for the sidebar */
+html {
+-webkit-overflow-scrolling:touch;
+}
+
+#content {
+padding: 20px;
+}
+
+/* =============================================================================
+Content Layout
+========================================================================== */
+/* column wrapper -- all content goes inside this */
+.colmask {
+overflow:visible;
+border:1px solid #dfdede;
+background:#f4f4f4;
+}
+
+/* section + content wrapper */
+.section, .Servers form, #addFeed, #addFeedContent {
+border-bottom:1px solid #dfdede;
+}
+
+.section:last-child, .Servers form:last-child {
+border:none;
+}
+
+/* left (heading) column */
+.col2 {
+float:left;
+font-family:"Trebuchet MS",Verdana,Helvetica,sans-serif;
+padding:12px;
+width:260px;
+}
+
+/* right (fieldset) column */
+.col1 {
+padding:12px 0;
+}
+
+/* =============================================================================
+Content Styling ( col2 | col1 )
+========================================================================== */
+.col2 h3 {
+background:none repeat scroll 0 0 #666;
+color:#fff;
+padding:6px 8px;
+vertical-align:middle;
+margin:0;
+}
+
+.example {
+background-color:#fefeee;
+}
+
+.presets input {
+margin:2px 0;
+}
+
+label.config {
+overflow:auto;
+float:left;
+width:22%;
+font-weight:700;
+display:block;
+text-align:left;
+margin-right:10px;
+margin-left:20px;
+}
+
+label.narrow {
+width:200px !important;
+}
+
+label.wide {
+width:auto !important;
+}
+
+.desc {
+display:block;
+margin:0 0 0 22%;
+padding:3px 0 0 31px;
+font-size:12px;
+font-style:italic;
+}
+
+.desc.narrow {
+margin:0 0 0 200px !important;
+}
+
+.desc-check {
+font-size:12px;
+font-style:italic;
+padding:0 1px;
+}
+
+#content p {
+font-size:12px;
+color:#666;
+margin: 1em 0;
+}
+
+div.field-pair {
+padding:6px;
+clear:both;
+float:none;
+min-width:585px;
+overflow: hidden;
+}
+
+#content fieldset {
+border:0;
+outline:0;
+min-width:350px;
+margin:0;
+padding:0 12px 12px 6px;
+}
+
+textarea,
+select,
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"] {
+padding-left:5px;
+border:1px solid #d4d0c8;
+}
+
+select .selected {
+font-weight:700;
+}
+
+select option {
+padding-left:5px;
+}
+
+input[type='checkbox'] {
+display:block;
+white-space:nowrap;
+padding:0;
+margin-left:5px;
+}
+
+textarea:hover,
+select:hover,
+input[type="date"]:hover,
+input[type="datetime"]:hover,
+input[type="datetime-local"]:hover,
+input[type="email"]:hover,
+input[type="month"]:hover,
+input[type="number"]:hover,
+input[type="password"]:hover,
+input[type="search"]:hover,
+input[type="tel"]:hover,
+input[type="text"]:hover,
+input[type="time"]:hover,
+input[type="url"]:hover,
+input[type="week"]:hover,
+textarea:focus,
+select:focus,
+input[type="date"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="email"]:focus,
+input[type="month"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="text"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+input[type="week"]:focus {
+background-color:#fffff0;
+border:1px solid #aaa;
+}
+
+.col1 input[type='checkbox'] {
+position:absolute;
+top:auto !important;
+height:16px;
+width:16px;
+margin-left:0;
+}
+
+.alt {
+background-color:#eee;
+}
+
+.even {
+background-color:#dfdede;
+}
+
+.readonly {
+background-color:#eff;
+}
+
+.multiple_cats {
+padding:5px 10px !important;
+margin-top:2px;
+}
+
+.padding {
+padding:6px;
+}
+
+.disabled {
+color:#aaa;
+}
+
+.padTable p {
+margin-top:0;
+}
+
+.nomargin {
+margin:0;
+}
+
+.path {
+font-family:Verdana,Helvetica,Sans-serif,sans;
+color:#000;
+font-weight:400;
+}
+
+.darkred {
+color:#900;
+}
+
+.scheduleEntry {
+padding:3px 0;
+}
+
+.time {
+padding:0 10px;
+color:#000;
+font-weight:700;
+}
+
+.frequency {
+padding-right:5px;
+letter-spacing:.5px;
+}
+
+.padTable {
+padding:15px;
+overflow:auto;
+clear:both;
+}
+
+.padTable h3 {
+margin-top:0;
+}
+
+.catTable th, .catTable td {
+padding:5px;
+}
+
+.catTable th {
+text-align:center;
+}
+
+.default {
+background-color:#ffffe0;
+border-bottom:1px solid #aaa;
+border-top:1px solid #ddd;
+}
+
+.hidden {
+visibility:hidden;
+}
+
+.float-left {
+float:left;
+}
+
+.float-right {
+float:right;
+}
+
+.align-left {
+text-align:left;
+}
+
+.align-right {
+text-align:right;
+}
+
+.align-center {
+text-align:center;
+}
+
+.nowrap {
+white-space:nowrap;
+}
+
+/* ==========================================================================
+Pattern Key - Config > Sorting
+========================================================================== */
+.Key {
+display:none;
+border:1px solid #ccc;
+width:425px;
+}
+
+.Key th {
+background:none repeat scroll 0 0 #666;
+color:#fff;
+margin:0;
+padding:3px 9px;
+}
+
+.Key td {
+padding:2px;
+}
+
+.Key tr {
+border-bottom:1px solid #ccc;
+}
+
+/* ==========================================================================
+Info page - Config > Config
+========================================================================== */
+#infoTable {
+font-family:Verdana,Helvetica,Sans-serif,sans;
+font-size:12px;
+width:100%;
+}
+
+#infoTable tr {
+line-height:17px;
+}
+.infoTableHeader, .infoTableCell {
+padding:6px;
+}
+
+.infoTableHeader {
+font-weight:700;
+width:200px;
+}
+
+.infoTableSeperator {
+border-top:1px solid #ddd;
+}
+
+/* ==========================================================================
+Test e-mail/notifications - Config > Notifications
+========================================================================== */
+.icon {
+padding-left:20px;
+}
+
+.loading {
+background:url('../images/loading16.gif') no-repeat left bottom;
+}
+
+.success {
+background:url('../images/yes16.png') no-repeat left bottom;
+}
+
+.failure {
+background:url('../images/no16.png') no-repeat left bottom;
+}
+
+/* ==========================================================================
+Pathbrowser - Config > Folders
+========================================================================== */
+#fileBrowserDialog {
+max-height:480px;
+overflow-y:auto;
+}
+
+#fileBrowserDialog h1 {
+border-bottom:1px solid #4e4e4e;
+font-size:16px;
+line-height:18px;
+font-weight:700;
+padding-bottom:4px;
+text-align:left;
+margin: 12px 0;
+}
+
+#fileBrowserDialog ul {
+margin:0;
+padding:0;
+}
+
+#fileBrowserDialog ul li {
+margin:2px;
+padding:4px 0;
+cursor:pointer;
+list-style-type:none;
+}
+
+#fileBrowserDialog ul li a {
+color:#000;
+display:block;
+}
+
+#fileBrowserDialog ul li a:hover {
+color:#00f;
+background:none;
+}
+
+#fileBrowserDialog ul li a span.ui-icon {
+margin:0 4px;
+float:left;
+}
+
+.browserDialog .ui-dialog-buttonpane {
+background-color:transparent!important;
+}
+
+.browserDialog.busy .ui-dialog-buttonpane {
+background:url('../images/loading-bar.gif') 10px 50% no-repeat !important;
+}
+
+.fileBrowser {
+margin-left:5px !important;
+}
+
+/* ==========================================================================
+Autocomplete - Config > Folders
+========================================================================== */
+.ui-autocomplete-loading {
+background:#fff url('../images/loading16.gif') right center no-repeat;
+}
+
+.ui-autocomplete {
+max-height:140px;
+overflow-y:scroll;
+overflow-x:hidden;
+}
+
+/* ie6 hack */
+* html .ui-autocomplete {
+height:140px;
+}
+
+.ui-menu .ui-menu-item {
+background-color:#eee;
+}
+
+.ui-menu .ui-menu-item-alternate {
+background-color:#fff;
+}
+
+.ui-menu a.ui-state-hover {
+background:none;
+background-color:#0a246a;
+color:#fff;
+}
+
+
+/* ==========================================================================
+RSS page - Config > RSS
+========================================================================== */
+h2.activeRSS {
+margin-bottom:10px;
+}
+
+.activeRSS a, .activeRSS a:visited {
+text-decoration:none;
+color:#000;
+}
+
+.activeRSS a:hover {
+color:#4b4742;
+}
+
+.favicon {
+background-position: center center !important;
+opacity: 1;
+top: -1px;
+height: 16px;
+width: 16px;
+float: left;
+margin-right: 2px;
+}
+
+.feed {
+text-decoration:none;
+}
+
+.feed_enabled {
+color:#000;
+}
+
+.feed_disabled {
+color:#900;
+}
+
+#subscriptions td {
+border: 0 none;
+padding-top: 0.4em;
+}
+
+#subscriptions .chk {
+padding-right: 5px;
+width: 14px;
+}
+
+#subscriptions .title {
+font-weight: bold;
+padding-right: 0.3em;
+width: auto;
+}
+
+.ie6 .subscription-title {
+width: 20em;
+}
+
+.subscription-title {
+max-width: 35em;
+min-width: 20em;
+overflow: hidden;
+white-space: nowrap;
+}
+
+.data-row td {
+border-top: 1px solid #ddd;
+}
+
+.controls {
+text-align: right;
+padding-right: 5px;
+white-space: nowrap;
+}
+
+.feed-row td {
+color: #777;
+max-width: 40em;
+padding: 0 0 0.5em;
+}
+.feed-row div {
+padding-right: 10px;
+}
+
+/* ==========================================================================
+RSS tab results - Config > RSS
+========================================================================== */
+.tab-content {
+background-color:#f8f4e7;
+}
+
+span.count {
+-webkit-border-radius:8px;
+-moz-border-radius:8px;
+border-radius:8px;
+background:none repeat scroll 0 0 #aca79c;
+color:#fff;
+margin:-3px 0 0 5px;
+padding:1px 10px;
+}
+
+a.current .count {
+background-color:#777 !important;
+}
+
+a.current:hover .count {
+background-color:#333 !important;
+}
+
+ul.tabs {
+margin:0 !important;
+padding:0;
+height:30px;
+}
+
+ul.tabs li {
+float:left;
+padding:0;
+margin:0;
+list-style-type:none;
+}
+
+ul.tabs a {
+float:left;
+font-size:13px;
+display:block;
+padding:5px 30px;
+text-decoration:none;
+border:1px solid #dfdede;
+height:18px;
+background-color:#f1ede0;
+color:#777;
+margin-right:2px;
+position:relative;
+top:1px;
+outline:0;
+-webkit-border-top-left-radius:4px;
+-webkit-border-top-right-radius:4px;
+-moz-border-radius-topleft:4px;
+-moz-border-radius-topright:4px;
+border-top-left-radius:4px;
+border-top-right-radius:4px;
+}
+
+ul.tabs a:hover {
+background-color:#fcf8eb;
+color:#333;
+}
+
+ul.tabs a.current {
+background-color:#f8f4e7;
+border-bottom:1px solid #f8f4e7;
+color:#000;
+cursor:default;
+}
+
+#show_api_qrcode:focus,
+#show_nzb_qrcode:focus {
+    outline: thin dotted #333333;
+    outline-offset: -2px;
+    border-color: rgba(82, 168, 236, 0.8);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+/* bootstrap overrides */
+.navbar, form, input, textarea, select, .uneditable-input {
+margin-bottom: 0;
+}
+input, textarea, select, .uneditable-input {
+width: auto;
+color: #000;
+}
+input[type="checkbox"] {
+margin: 1px 0;
+}
+select:focus, .btn:focus {
+outline: none;
+}

@@ -79,20 +79,55 @@
                 <div class="field-pair alt">
                     <label class="config" for="apikey">$T('opt-apikey')</label>
                     <input type="text" id="apikey" value="$session" size="35" />
-                    <input type="button" value="$T('button-apikey')" id="generate_new_apikey" />
-                    <input type="button" value="$T('qr-code')" title="$T('explain-qr-code')" class="show_qrcode" rel="$session" />
+                    <input type="button" value="$T('button-apikey')" id="generate_new_apikey" class="btn" />
+                    <div class="modal hide" id="api_qrcode" style="display: none;">
+                      <div class="modal-body align-center">
+                        <img src="https://chart.googleapis.com/chart?chs=300x300&amp;cht=qr&amp;chl=$session">
+                      </div>
+                    </div>
+                    <button class="btn" id="show_api_qrcode">
+                        <i class="icon-qrcode"></i>
+                        $T('qr-code')
+                    </button>
                     <span class="desc">$T('explain-apikey')</span>
                 </div>
                 <div class="field-pair">
                     <label class="config" for="nzbkey">$T('opt-nzbkey')</label>
                     <input type="text" id="nzbkey" value="$nzb_key" size="35" />
-                    <input type="button" value="$T('button-apikey')" id="generate_new_nzbkey" />
-                    <input type="button" value="$T('qr-code')" title="$T('explain-qr-code')" class="show_qrcode" rel="$nzb_key" />
+                    <input type="button" value="$T('button-apikey')" id="generate_new_nzbkey" class="btn" />
+                    <div class="modal hide" id="nzb_qrcode" style="display: none;">
+                      <div class="modal-body align-center">
+                        <img src="https://chart.googleapis.com/chart?chs=300x300&amp;cht=qr&amp;chl=$nzb_key">
+                      </div>
+                    </div>
+                    <button class="btn" id="show_nzb_qrcode">
+                        <i class="icon-qrcode"></i>
+                        $T('qr-code')
+                    </button>
                     <span class="desc">$T('explain-nzbkey')</span>
                 </div>
-                <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-                    <input type="button" value="$T('button-restart') SABnzbd" class="sabnzbd_restart" />
+                <div class="field-pair" style="overflow: visible;">
+                    <div class="btn-group">
+                        <button class="btn btn-primary saveButton">
+                            <i class="icon-pencil icon-white"></i>
+                            $T('button-saveChanges')
+                        </button>
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                          <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" class="sabnzbd_restart">
+                                    <i class="icon-repeat"></i>
+                                    $T('button-restart') SABnzbd
+                                </a>
+                            </li>
+                            <!--
+                            <li class="divider"></li>
+                            <li><a href="#">whatever</a></li>
+                            -->
+                          </ul>
+                    </div>
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -128,8 +163,8 @@
                     <span class="desc">$T('explain-https_key')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-                    <input type="button" value="$T('button-restart') SABnzbd" class="sabnzbd_restart" />
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
+                    <input type="button" value="$T('button-restart') SABnzbd" class="btn sabnzbd_restart" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -156,14 +191,14 @@
                     <span class="desc">$T('explain-cleanup_list')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
     </div><!-- /section -->
     <div class="padding alt">
-        <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-        <input type="button" value="$T('button-restart') SABnzbd" class="sabnzbd_restart" />
+        <input type="submit" value="$T('button-saveChanges')" class="btn btn-success saveButton" />
+        <input type="button" value="$T('button-restart') SABnzbd" class="btn btn-danger sabnzbd_restart" />
     </div>
     </form>
 </div><!-- /colmask -->
@@ -198,31 +233,11 @@
       }
     });
 
-    \$('.show_qrcode').each(function () {
-        var qrkey = \$(this).attr('rel'),
-        qrcode = \$('<img />', {
-            src: 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + qrkey,
-            alt: 'loading...',
-            width: 300,
-            height: 300
-        });
-        \$(this).qtip( {
-            content: {
-                text: qrcode
-            },
-            position: {
-                my: 'center',
-                at: 'center',
-                target: \$(window)
-            },
-            show: {
-                event: 'click',
-                solo: true,
-                modal: true
-            },
-            hide: false,
-            style: 'ui-tooltip-light ui-tooltip-rounded ui-tooltip-shadow ui-tooltip-qrcode'
-        });
+    \$('#show_api_qrcode').click(function () {
+        \$('#api_qrcode').modal();
+    });
+    \$('#show_nzb_qrcode').click(function () {
+        \$('#nzb_qrcode').modal();
     });
 
 });

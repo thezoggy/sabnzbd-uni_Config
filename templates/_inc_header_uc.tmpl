@@ -11,8 +11,14 @@
   #set global $root = '../../'#
 #end if#
 
-        <link rel="stylesheet" type="text/css" href="${root}staticcfg/css/style.css" />
-        <script src="${root}staticcfg/js/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="${root}staticcfg/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="${root}staticcfg/css/jquery-ui-1.8.18.custom.css" />
+        <link rel="stylesheet" type="text/css" href="${root}staticcfg/css/config.css" />
+        <script src="${root}staticcfg/js/jquery-1.7.2.min.js"></script>
+        <script src="${root}staticcfg/js/jquery-ui-1.8.18.custom.min.js"></script>
+        <script src="${root}staticcfg/js/bootstrap.min.js"></script>
+        <script src="${root}staticcfg/js/jquery.form-3.0.3.js"></script>
+        <script src="${root}staticcfg/js/jquery-pathbrowser.js"></script>
 
         <script type="text/javascript">
             \$.Browser = {
@@ -71,71 +77,79 @@
                     timeout: 3000
                 });
 
-                \$("#sidebar-trigger").click(function () {
-                    if (\$("#sidebar-trigger").hasClass("trigger-left")) {
-                        \$("#sidebar").animate({marginLeft: "-150px", queue: false}, 250);
-                        \$("#sidebar-pane").animate({marginLeft: "-150px", queue: false}, 250);
-                        \$("#content").animate({left: "6px", queue: false}, 250);
-                        \$("#sidebar-trigger").removeClass("trigger-left").addClass("trigger-right");
-                    } else {
-                        \$("#sidebar").animate({marginLeft: "0px", queue: false}, 250);
-                        \$("#sidebar-pane").animate({marginLeft: "0px", queue: false}, 250);
-                        \$("#content").animate({left: "156px", queue: false}, 250);
-                        \$("#sidebar-trigger").removeClass("trigger-right").addClass("trigger-left");
-                    }
-                });
-
             });
   
         </script>
 
 </head>
 <body class="$pane">
-    <div id="sidebar">
-        <a href="${root}"><img src="${root}staticcfg/images/logo.png" width="120" height="45" id="logo" alt="[home]" /></a>
-        <div id="tab-container">
-            <a href="${root}config/">
-                <div #if $pane == "Config" then 'class="active"' else ""#>$T('menu-config')</div>
-            </a>
-            <a href="${root}config/general/">
-                <div #if $pane == "General" then 'class="active"' else ""#>$T('cmenu-general')</div>
-            </a>
-            <a href="${root}config/folders/">
-                <div #if $pane == "Folders" then 'class="active"' else ""#>$T('cmenu-folders')</div>
-            </a>
-            <a href="${root}config/switches/">
-                <div #if $pane == "Switches" then 'class="active"' else ""#>$T('cmenu-switches')</div>
-            </a>
-            <a href="${root}config/server/">
-                <div #if $pane == "Servers" then 'class="active"' else ""#>$T('cmenu-servers')</div>
-            </a>
-            <a href="${root}config/scheduling/">
-                <div #if $pane == "Scheduling" then 'class="active"' else ""#>$T('Plush-cmenu-scheduling')</div>
-            </a>
-            <a href="${root}config/notify/">
-                <div #if $pane == "Email" then 'class="active"' else ""#>$T('cmenu-notif')</div>
-            </a>
-            <a href="${root}config/indexers/">
-                <div #if $pane == "Index Sites" then 'class="active"' else ""#>$T('cmenu-newzbin')</div>
-            </a>
-            <a href="${root}config/categories/">
-                <div #if $pane == "Categories" then 'class="active"' else ""#>$T('cmenu-cat')</div>
-            </a>
-            <a href="${root}config/sorting/">
-                <div #if $pane == "Sorting" then 'class="active"' else ""#>$T('cmenu-sorting')</div>
-            </a>
-            <a href="${root}config/special/">
-                <div #if $pane == "Special" then 'class="active"' else ""#>$T('cmenu-special')</div>
-            </a>
-            <a href="${root}config/rss/">
-                <div #if $pane == "RSS" then 'class="active"' else ""#>$T('cmenu-rss')</div>
-            </a>
-            <br/>
-            <a href="$helpuri$help_uri" target="_blank">
-                <div>$T('menu-help')</div>
-            </a>
-        </div>
+
+<div style="margin: 10px 10px 0 10px;">
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+ 
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="${root}">SABnzbd</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="divider-vertical"></li>
+          <li #if $pane == "Config" then 'class="active"' else ""#>
+            <a href="${root}config/">$T('menu-config')</a>
+          </li>
+          <li #if $pane == "General" then 'class="active"' else ""#>
+            <a href="${root}config/general/">$T('cmenu-general')</a>
+          </li>
+          <li #if $pane == "Folders" then 'class="active"' else ""#>
+            <a href="${root}config/folders/">$T('cmenu-folders')</a>
+          </li>
+          <li #if $pane == "Switches" then 'class="active"' else ""#>
+            <a href="${root}config/switches/">$T('cmenu-switches')</a>
+          </li>
+          <li #if $pane == "Servers" then 'class="active"' else ""#>
+            <a href="${root}config/server/">$T('cmenu-servers')</a>
+          </li>
+          <li #if $pane == "Scheduling" then 'class="active"' else ""#>
+            <a href="${root}config/scheduling/">$T('Plush-cmenu-scheduling')</a>
+          </li>
+          <li #if $pane == "Email" then 'class="active"' else ""#>
+            <a href="${root}config/notify/">$T('cmenu-notif')</a>
+          </li>
+          <li #if $pane == "Index Sites" then 'class="active"' else ""#>
+            <a href="${root}config/indexers/">$T('cmenu-newzbin')</a>
+          </li>
+          <li #if $pane == "Categories" then 'class="active"' else ""#>
+            <a href="${root}config/categories/">$T('cmenu-cat')</a>
+          </li>
+          <li #if $pane == "Sorting" then 'class="active"' else ""#>
+            <a href="${root}config/sorting/">$T('cmenu-sorting')</a>
+          </li>
+          <li #if $pane == "Special" then 'class="active"' else ""#>
+            <a href="${root}config/special/">$T('cmenu-special')</a>
+          </li>
+          <li #if $pane == "RSS" then 'class="active"' else ""#>
+            <a href="${root}config/rss/">$T('cmenu-rss')</a>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+            <a href="$helpuri$help_uri" target="_blank">$T('menu-help')</a>
+          </li>
+        </ul>
+
+      </div>
+ 
     </div>
-<div id="sidebar-pane"><div id="sidebar-trigger" class="trigger-left"></div></div>
+  </div>
+</div>
+</div>
+
     <div id="content">
     <!-- Content start -->

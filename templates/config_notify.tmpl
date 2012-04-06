@@ -35,7 +35,7 @@
                     <span class="desc">$T('explain-email_dir')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -72,9 +72,8 @@
                     <span class="desc">$T('explain-email_pwd')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-                    <input type="button" value="$T('link-testEmail')" id="test_email" rel="$T('askTestEmail')" />
-                    <span id="testmail-result" class="icon path darkred">&nbsp;</span>
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
+                    <input type="button" value="$T('link-testEmail')" id="test_email" rel="$T('askTestEmail')" class="btn" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -106,16 +105,15 @@
                     <span class="desc">$T('explain-growl_password')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-                    <input type="button" value="$T('testNotify')" id="test_notification" />
-                    <span id="testnotice-result" class="icon path darkred">&nbsp;</span>
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
+                    <input type="button" value="$T('testNotify')" id="test_notification" class="btn" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
     </div><!-- /section -->
     <div class="padding alt">
-        <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-        <input type="button" value="$T('button-restart') SABnzbd" class="sabnzbd_restart" />
+        <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
+        <input type="button" value="$T('button-restart') SABnzbd" class="btn sabnzbd_restart" />
     </div>
     </form>
 </div><!-- /colmask -->
@@ -131,17 +129,15 @@
                 data: {mode: 'test_email', apikey: '$session', output: 'json' },
                 beforeSend: function () {
                     \$('#test_email').attr("disabled", "disabled");
-                    \$('#testmail-result').removeClass("success failure").addClass("loading").html('$T('post-Verifying')');
                 },
                 complete: function () {
                     \$('#test_email').removeAttr("disabled");
-                    \$('#testmail-result').removeClass("loading");
                 },
                 success: function (data) {
                     if (data.status == true) {
-                      \$('#testmail-result').addClass("success").html('$T('smpl-emailsent')');
+                      alert("$T('smpl-emailsent')");
                     } else {
-                      \$('#testmail-result').addClass("failure").html(data.error);
+                      alert(data.error);
                     }
                 }
             });
@@ -154,17 +150,15 @@
             data: {mode: 'test_notif', apikey: '$session', output: 'json' },
             beforeSend: function () {
                 \$('#test_notification').attr("disabled", "disabled");
-                \$('#testnotice-result').removeClass("success failure").addClass("loading").html('$T('post-Verifying')');
             },
             complete: function () {
                 \$('#test_notification').removeAttr("disabled");
-                \$('#testnotice-result').removeClass("loading");
             },
             success: function (data) {
                 if (data.status == true) {
-                  \$('#testnotice-result').addClass("success").html('$T('smpl-notesent')');
+                  alert("'$T('smpl-notesent')");
                 } else { 
-                  \$('#testnotice-result').addClass("failure").html(data.error);
+                  alert(data.error);
                 }
             }
         });

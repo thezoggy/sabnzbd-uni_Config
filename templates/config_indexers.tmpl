@@ -28,7 +28,7 @@
                     <span class="desc">$T('explain-newzbin_unbookmark')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -51,7 +51,7 @@
                     <span class="desc">$T('explain-password_newzbin')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -60,13 +60,13 @@
         <div class="col2">
             <h3>Newzbin $T('newzbinBookmarks')</h3>
             <p>
-                <input type="button" id="getBookmarks" value="$T('link-getBookmarks')" />
+                <input type="button" id="getBookmarks" value="$T('link-getBookmarks')" class="btn" />
                 <span id="getBookmarks-result" class="icon">&nbsp;</span>
                 <br/><br/>
                 <!--#if $bookmarks_list#-->
-                <input type="button" id="hideBookmarks" value="$T('link-HideBM')" />
+                <input type="button" id="hideBookmarks" value="$T('link-HideBM')" class="btn" />
                 <!--#else#-->
-                <input type="button" id="showBookmarks" value="$T('link-ShowBM')" />
+                <input type="button" id="showBookmarks" value="$T('link-ShowBM')" class="btn" />
                 <!--#end if#-->
             </p>
         </div><!-- /col2 -->
@@ -88,7 +88,7 @@
                     <span class="desc">$T('explain-bookmark_rate')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -112,8 +112,8 @@
     </div><!-- /section -->
     <!--#end if#-->
     <div class="padding alt">
-        <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-        <input type="button" value="$T('button-restart') SABnzbd" class="sabnzbd_restart" />
+        <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
+        <input type="button" value="$T('button-restart') SABnzbd" class="btn sabnzbd_restart" />
     </div>
     </form>
 </div><!-- /colmask -->
