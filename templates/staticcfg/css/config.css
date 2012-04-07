@@ -20,6 +20,7 @@ background:#f4f4f4;
 /* section + content wrapper */
 .section, .Servers form, #addFeed, #addFeedContent {
 border-bottom:1px solid #dfdede;
+overflow:auto;
 }
 
 .section:last-child, .Servers form:last-child {
@@ -95,7 +96,7 @@ font-style:italic;
 padding:0 1px;
 }
 
-#content p {
+.col2 p {
 font-size:12px;
 color:#666;
 margin: 1em 0;
@@ -224,6 +225,11 @@ margin-top:0;
 
 .nomargin {
 margin:0;
+}
+
+.copyright {
+margin:0;
+padding: 6px;
 }
 
 .path {
