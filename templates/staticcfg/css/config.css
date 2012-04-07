@@ -661,3 +661,49 @@ outline: none;
 .btn-primary:focus, .btn-success:focus, .btn-danger:focus {
     border: 1px solid #000;
 }
+
+/* test css */
+.subnav {
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    background-color: #F4F4F4;
+    background-image: -moz-linear-gradient(center top , #F5F5F5 0%, #EEEEEE 100%);
+    background-repeat: repeat-x;
+    border: 1px solid #BFBEBE;
+    border-radius: 4px 4px 4px 4px;
+    border-width: 0 1px 1px;
+    border-top: none;
+    min-height: 30px;
+    overflow: hidden;
+}
+.subnav .nav {
+    margin-bottom: 0;
+}
+.subnav .nav > li > a {
+    border-radius: 0 0 0 0;
+    margin: 0;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    border: 0 none;
+    text-shadow: none;
+}
+.subnav .nav > li > a:hover {
+    background-color: #F5F5F5;
+    color: #000;
+}
+.subnav .nav > .active > a, .subnav .nav > .active > a:hover {
+    background-color: #DFDEDE;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05) inset;
+    color: #000;
+    padding-left: 13px;
+}
+.subnav .nav > li:first-child > a, .subnav .nav > li:first-child > a:hover {
+    border-left: 0 none;
+    padding-left: 12px; /* 1px offset for no border */
+}
+.subnav .nav > li:last-child > a {
+    border-right: 0 none;
+}
+

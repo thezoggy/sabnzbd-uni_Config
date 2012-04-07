@@ -101,6 +101,35 @@
       <div class="nav-collapse">
         <ul class="nav">
           <li class="divider-vertical"></li>
+          <li>
+            <a href="${root}">$T('menu-home')</a>
+          </li>
+          <li>
+            <a href="${root}/queue">$T('menu-queue')</a>
+          </li>
+          <li>
+            <a href="${root}/history">$T('menu-history')</a>
+          </li>
+          <li class="active">
+            <a href="${root}config/">$T('menu-config')</a>
+          </li>
+          <li>
+            <a href="${root}">$T('menu-cons')</a>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li class="divider-vertical"></li>
+          <li>
+            <a href="$helpuri$help_uri" target="_blank">$T('menu-help')</a>
+          </li>
+        </ul>
+      </div>
+ 
+    </div>
+  </div>
+  <div class="container">
+      <div class="subnav">
+        <ul class="nav">
           <li #if $pane == "Config" then 'class="active"' else ""#>
             <a href="${root}config/">$T('menu-config')</a>
           </li>
@@ -138,17 +167,9 @@
             <a href="${root}config/rss/">$T('cmenu-rss')</a>
           </li>
         </ul>
-        <ul class="nav pull-right">
-          <li>
-            <a href="$helpuri$help_uri" target="_blank">$T('menu-help')</a>
-          </li>
-        </ul>
-
       </div>
- 
-    </div>
   </div>
-</div>
+</div><!-- /navbar -->
 </div>
 
     <div id="content">
