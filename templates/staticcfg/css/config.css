@@ -652,7 +652,7 @@ select:focus, .btn:focus {
 outline: none;
 }
 button.btn, input.btn[type="submit"] {
-    line-height: 16.3667px;
+    line-height: 18px;
 }
 .btn:focus {
     border: 1px solid #4D90FE;
