@@ -71,18 +71,18 @@
                 autoOpen:    false,
                 buttons: [
                     {
-                        text: "Cancel",
-                        "class": "btn btn-large",
-                        click: function() {
-                            fileBrowserDialog.dialog("close");
-                        }
-                    },
-                    {
                         text: "Ok",
                         "class": "btn btn-large",
                         click: function() {
                             // store the browsed path to the associated text field
                             callback(currentBrowserPath, options);
+                            fileBrowserDialog.dialog("close");
+                        }
+                    },
+                    {
+                        text: "Cancel",
+                        "class": "btn btn-large",
+                        click: function() {
                             fileBrowserDialog.dialog("close");
                         }
                     }
