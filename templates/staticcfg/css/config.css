@@ -672,7 +672,7 @@ outline: none;
     background-image: -moz-linear-gradient(center top , #F5F5F5 0%, #EEEEEE 100%);
     background-repeat: repeat-x;
     border: 1px solid #BFBEBE;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 0 0 4px 4px;
     border-width: 0 1px 1px;
     border-top: none;
     min-height: 30px;
@@ -684,8 +684,7 @@ outline: none;
 .subnav .nav > li > a {
     border-radius: 0 0 0 0;
     margin: 0;
-    padding-bottom: 6px;
-    padding-top: 6px;
+    padding: 6px 12px;
     border: 0 none;
     text-shadow: none;
 }
@@ -697,11 +696,10 @@ outline: none;
     background-color: #DFDEDE;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05) inset;
     color: #000;
-    padding-left: 13px;
 }
 .subnav .nav > li:first-child > a, .subnav .nav > li:first-child > a:hover {
     border-left: 0 none;
-    padding-left: 12px; /* 1px offset for no border */
+    border-radius: 0 0 0 4px;
 }
 .subnav .nav > li:last-child > a {
     border-right: 0 none;
