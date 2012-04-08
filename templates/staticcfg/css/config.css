@@ -20,7 +20,7 @@ background:#f4f4f4;
 /* section + content wrapper */
 .section, .Servers form, #addFeed, #addFeedContent {
 border-bottom:1px solid #dfdede;
-overflow:auto;
+overflow:visible; /*needed so dropdown button menu is visible */
 }
 
 .section:last-child, .Servers form:last-child {
@@ -651,7 +651,9 @@ margin: 1px 0;
 select:focus, .btn:focus {
 outline: none;
 }
-
+button.btn, input.btn[type="submit"] {
+    line-height: 16.3667px;
+}
 .btn:focus {
     border: 1px solid #4D90FE;
     outline: none;
