@@ -88,7 +88,7 @@
 
     <div class="section">
         <form action="save_rss_rate" method="post">
-        <input type="hidden" name="session" value="$session"/>
+        <input type="hidden" name="session" value="$session" />
         <div class="col1">
             <fieldset>
                 <div class="field-pair">
@@ -115,8 +115,9 @@
           <!--#end if#-->
 
           <form action="upd_rss_feed" method="post">
-          <input type="hidden" name="session" value="$session"/>
+          <input type="hidden" name="session" value="$session" />
           <input type="hidden" value="$feed" name="feed" />
+          <input type="hidden" name="uri" value="$rss[$feed]['uri']" />
           <table class="catTable">
             <thead>
             <tr>
@@ -199,7 +200,7 @@
 
             <!-- add new filter -->
             <form action="upd_rss_filter" method="post">
-            <input type="hidden" name="session" value="$session"/>
+            <input type="hidden" name="session" value="$session" />
             <input type="hidden" name="index" value="$rss[$feed]['filtercount']" />
             <input type="hidden" name="feed" value="$feed" />
             <table class="catTable">
@@ -270,7 +271,7 @@
               <!--#set $odd = not $odd#--><!--#slurp#-->
 
                 <form action="upd_rss_filter" method="post">
-                <input type="hidden" name="session" value="$session"/>
+                <input type="hidden" name="session" value="$session" />
                 <input type="hidden" name="index" value="$fnum" />
                 <input type="hidden" name="feed" value="$feed" />
                 <table class="catTable">
@@ -340,7 +341,7 @@
           <!--#end for#-->
 
               <form action="download_rss_feed" method="post">
-              <input type="hidden" name="session" value="$session"/>
+              <input type="hidden" name="session" value="$session" />
               <input type="hidden" name="feed" value="$feed" />
                 <div class="padding">
                     <input type="button" class="testFeed" value="$T('button-preFeed')" rel="$feed" />
