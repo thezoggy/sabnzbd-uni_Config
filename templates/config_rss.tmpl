@@ -121,6 +121,7 @@
           <table class="catTable">
             <thead>
             <tr>
+              <th>&nbsp;</th>
               <th>$T('rss-order')</th>
               <th>$T('rss-type')</th>
               <th>$T('rss-filter')</th>
@@ -140,6 +141,9 @@
             <tbody>
             <tr class="default">
               <td>
+                <input type="checkbox" disabled="disabled" class="hidden" />
+              </td>
+              <td>
                 <input type="text" disabled="disabled" size="1" class="hidden" />
               </td>
               <td>
@@ -151,7 +155,7 @@
                 </select>
               </td>
               <td>
-                <input type="text" disabled="disabled" value="" size="30" class="hidden" />
+                <input type="text" disabled="disabled" value="" size="25" class="hidden" />
               </td>
               <!--#if $rss[$feed]['pick_cat']#-->
               <td>
@@ -207,6 +211,9 @@
             <tbody>
             <tr>
               <td>
+                <input type="checkbox" name="enabled" value="0" />
+              </td>
+              <td>
                 <input type="text" name="new_index" size="1" />
               </td>
               <td>
@@ -218,7 +225,7 @@
                 </select>
               </td>
               <td>
-                <input type="text" name="filter_text" value="" size="30" />
+                <input type="text" name="filter_text" value="" size="25" />
               </td>
               <!--#if $rss[$feed]['pick_cat']#-->
                 <td>
@@ -278,6 +285,9 @@
                 <tbody>
                 <tr class="<!--#if $odd then "alt" else ""#-->">
                   <td>
+                    <input type="checkbox" name="enabled" value="0" <!--#if $filter[6] == '0' then 'checked="checked"' else ""#--> />
+                  </td>
+                  <td>
                     <input type="text" name="new_index" value="$fnum" size="1" />
                   </td>
                   <td>
@@ -289,7 +299,7 @@
                     </select>
                   </td>
                   <td>
-                    <input type="text" name="filter_text" value="$filter[4]" size="30" />
+                    <input type="text" name="filter_text" value="$filter[4]" size="25" />
                   </td>
                   <!--#if $rss[$feed]['pick_cat']#-->
                     <td>
@@ -505,15 +515,18 @@
         }
     });
 
-    \$('.delFeed').click(function(){
-        var whichFeed = \$(this).attr("rel");
-        \$.ajax({
-          type: "POST",
-          url: "del_rss_feed",
-          data: {feed: whichFeed, session: "$session" }
-        }).done(function( msg ) {
-          location.reload();
-        });
+    \$('.delFeed').click(function(e){
+        e.preventDefault();
+        if ( confirm("$T('confirm')") ) {
+            var whichFeed = \$(this).attr("rel");
+            \$.ajax({
+              type: "POST",
+              url: "del_rss_feed",
+              data: {feed: whichFeed, session: "$session" }
+            }).done(function( msg ) {
+              location.reload();
+            });
+        }
     });
 
     \$('.testFeed').click(function(){
