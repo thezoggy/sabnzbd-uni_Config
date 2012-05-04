@@ -1,89 +1,80 @@
-/* fix the normalize overflow since we use a sidebar and don't want the overflow for the sidebar */
-html {
--webkit-overflow-scrolling:touch;
-}
-
-#content {
-padding: 20px;
-}
-
 /* =============================================================================
 Content Layout
 ========================================================================== */
+#content {
+  padding: 20px;
+}
 /* column wrapper -- all content goes inside this */
 .colmask {
-overflow:visible;
-border:1px solid #dfdede;
-background:#f4f4f4;
+  overflow: visible;
+  background: #f4f4f4;
+  border: 1px solid #dfdede;
 }
-
 /* section + content wrapper */
 .section, .Servers form, #addFeed, #addFeedContent {
-border-bottom:1px solid #dfdede;
-overflow:visible; /*needed so dropdown button menu is visible */
+  overflow: visible;
+  /*needed so dropdown button menu is visible */
+  border-bottom: 1px solid #dfdede;
 }
-
 .section:last-child, .Servers form:last-child {
-border:none;
+  border:none;
 }
-
 /* left (heading) column */
 .col2 {
-float:left;
-font-family:"Trebuchet MS",Verdana,Helvetica,sans-serif;
-padding:12px;
-width:275px;
+  float: left;
+  width: 275px;
+  padding: 12px;
+  font-family: "Trebuchet MS",Verdana,Helvetica,sans-serif;
 }
-
 /* right (fieldset) column */
 .col1 {
-padding:12px 0;
+  padding: 12px 0;
 }
 
 /* =============================================================================
 Content Styling ( col2 | col1 )
 ========================================================================== */
 .col2 h3 {
-background:none repeat scroll 0 0 #666;
-color:#fff;
-padding:6px 8px;
-vertical-align:middle;
-margin:0;
+  padding: 6px 8px;
+  margin: 0;
+  color: #fff;
+  vertical-align: middle;
+  background: none repeat scroll 0 0 #666;
 }
 
 .example {
-background-color:#fefeee;
+  background-color: #fefeee;
 }
 
 .presets input {
-margin:2px 0;
+  margin: 2px 0;
 }
 
 label.config {
-overflow:auto;
-float:left;
-width:22%;
-font-weight:700;
-display:block;
-text-align:left;
-margin-right:10px;
-margin-left:20px;
+  display: block;
+  float: left;
+  width: 22%;
+  margin-right: 10px;
+  margin-left: 20px;
+  overflow: auto;
+  font-weight: bold;
+  text-align: left;
 }
 
 label.narrow {
-width:200px !important;
+  width: 200px !important;
 }
 
 label.wide {
-width:auto !important;
+  width: auto !important;
 }
 
 .desc {
-display:block;
-margin:0 0 0 22%;
-padding:3px 0 0 31px;
-font-size:12px;
-font-style:italic;
+  display: block;
+  padding: 3px 0 0 31px;
+  margin: 0 0 0 22%;
+  font-size: 12px;
+  font-style: italic;
 }
 
 .desc.narrow {
@@ -351,7 +342,7 @@ padding:6px;
 
 .infoTableHeader {
 font-weight:700;
-width:200px;
+width:160px;
 }
 
 .infoTableSeperator {
@@ -377,93 +368,72 @@ background:url('../images/yes16.png') no-repeat left bottom;
 background:url('../images/no16.png') no-repeat left bottom;
 }
 
+
 /* ==========================================================================
 Pathbrowser - Config > Folders
 ========================================================================== */
 #fileBrowserDialog {
-max-height:480px;
-overflow-y:auto;
+  overflow-y: auto;
 }
-
-#fileBrowserDialog h1 {
-border-bottom:1px solid #4e4e4e;
-font-size:16px;
-line-height:18px;
-font-weight:700;
-padding-bottom:4px;
-text-align:left;
-margin: 12px 0;
-}
-
 #fileBrowserDialog ul {
-margin:0;
-padding:0;
+  padding: 0;
+  margin: 0;
 }
-
 #fileBrowserDialog ul li {
-margin:2px;
-padding:4px 0;
-cursor:pointer;
-list-style-type:none;
+  padding: 4px 0;
+  margin: 2px;
+  list-style-type: none;
+  cursor: pointer;
 }
-
 #fileBrowserDialog ul li a {
-color:#000;
-display:block;
+  display: block;
 }
-
 #fileBrowserDialog ul li a:hover {
-color:#00f;
-background:none;
+  color: #00f;
+  background: none;
 }
-
 #fileBrowserDialog ul li a span.ui-icon {
-margin:0 4px;
-float:left;
+  float: left;
+  margin: 0 4px;
 }
-
-.browserDialog .ui-dialog-buttonpane {
-background-color:transparent!important;
+#fileBrowserDialog h2 {
+  font-size: 20px;
 }
-
 .browserDialog.busy .ui-dialog-buttonpane {
-background:url('../images/loading-bar.gif') 10px 50% no-repeat !important;
+  background:url('../images/loading-bar.gif') 10px 50% no-repeat;
+}
+/* need? */
+.fileBrowser {
+  margin-left:5px !important;
 }
 
-.fileBrowser {
-margin-left:5px !important;
-}
 
 /* ==========================================================================
 Autocomplete - Config > Folders
 ========================================================================== */
 .ui-autocomplete-loading {
-background:#fff url('../images/loading16.gif') right center no-repeat;
+  background:#fff url('../images/loading16.gif') right center no-repeat;
 }
-
 .ui-autocomplete {
-max-height:140px;
-overflow-y:scroll;
-overflow-x:hidden;
+  max-height: 180px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-
-/* ie6 hack */
+/* IE6 hack since it doesn't support max-height */
 * html .ui-autocomplete {
-height:140px;
+  height: 180px;
+  padding-right: 20px;
 }
-
 .ui-menu .ui-menu-item {
-background-color:#eee;
+  background-color: #eee;
 }
-
-.ui-menu .ui-menu-item-alternate {
-background-color:#fff;
+.ui-menu .ui-menu-item-alternate{
+  background-color: #fff;
 }
-
-.ui-menu a.ui-state-hover {
-background:none;
-background-color:#0a246a;
-color:#fff;
+.ui-menu a.ui-state-hover{
+  color: #fff;
+  background: none;
+  background-color: #0a246a;
 }
 
 
@@ -612,15 +582,15 @@ border-top-right-radius:4px;
 }
 
 ul.tabs a:hover {
-background-color:#fcf8eb;
-color:#333;
+  color: #333;
+  background-color: #fcf8eb;
 }
 
 ul.tabs a.current {
-background-color:#f8f4e7;
-border-bottom:1px solid #f8f4e7;
-color:#000;
-cursor:default;
+  background-color:#f8f4e7;
+  border-bottom:1px solid #f8f4e7;
+  color:#000;
+  cursor:default;
 }
 
 /*
@@ -633,82 +603,109 @@ cursor:default;
 }
 */
 
-/* bootstrap overrides */
-.navbar .brand {
-    color: #fff;
-}
-.navbar .nav li > a {
-    font-weight: bold;
-}
-.navbar, form, input, textarea, select, .uneditable-input {
-    margin-bottom: 0;
+/* =======================================================================
+bootstrap overrides
+========================================================================== */
+img {
+  max-width: none;
+  /* fixes IE8 */
 }
 input, textarea, select, .uneditable-input {
-    width: auto;
-    color: #000;
-}
-input[type="checkbox"] {
-    margin: 1px 0;
+  width: auto;
+  color: #000;
 }
 select:focus, .btn:focus {
-    outline: none;
+  outline: none;
 }
-button.btn, input.btn[type="submit"] {
-    line-height: 18px;
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+  background-color: #efefef;
+  border-color: #ccc;
 }
-.btn:focus {
-    border: 1px solid #4D90FE;
-    outline: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+.btn:focus, .btn:active {
+  border: 1px solid #4d90fe;
+  outline: none;
+  -moz-box-shadow: none;
+       box-shadow: none;
 }
 .btn-primary:focus, .btn-success:focus, .btn-danger:focus {
-    border: 1px solid #000;
+  border: 1px solid #000;
+}
+.alert {
+  font-size: 15px;
+  text-align: center;
+}
+.navbar, label, legend, form, input, textarea, select, .uneditable-input {
+  margin-bottom: 0;
 }
 
-/* drop menu css */
+.navbar .brand {
+  color: #fff;
+}
+.navbar .nav li > a {
+  font-weight: bold;
+}
+.navbar-inner .nav > li.active > a {
+  padding: 5px 10px 8px;
+  margin-top: 4px;
+  margin-bottom: 3px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+input[type="checkbox"] {
+  margin: 1px 0;
+}
+
+
+/* submenu related */
 .subnav {
-    position: relative;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 0;
-    background-color: #F4F4F4;
-    background-image: -moz-linear-gradient(center top , #F5F5F5 0%, #EEEEEE 100%);
-    background-repeat: repeat-x;
-    border: 1px solid #BFBEBE;
-    border-radius: 0 0 4px 4px;
-    border-width: 0 1px 1px;
-    border-top: none;
-    min-height: 29px;
-    overflow: hidden;
-    -webkit-border-bottom-left-radius:4px;
-    -webkit-border-bottom-right-radius:4px;
-    -moz-border-radius-bottomleft:4px;
-    -moz-border-radius-bottomright:4px;
-    border-bottom-left-radius:4px;
-    border-bottom-right-radius:4px;
+  position: relative;
+  min-height: 29px;
+  margin-top: 0;
+  margin-right: 10px;
+  margin-left: 10px;
+  overflow: hidden;
+  background-color: #f4f4f4;
+  background-image: -moz-linear-gradient(top, #f5f5f5, #eee);
+  background-image: -ms-linear-gradient(top, #f5f5f5, #eee);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#eee));
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
+  background-image: -o-linear-gradient(top, #f5f5f5, #eee);
+  background-image: linear-gradient(top, #f5f5f5, #eee);
+  background-repeat: repeat-x;
+  border: 1px solid #bfbebe;
+  border-top: none;
+  border-width: 0 1px 1px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eee', GradientType=0);
+  border-radius: 0 0 4px 4px;
+  -webkit-border-bottom-right-radius: 4px;
+   -webkit-border-bottom-left-radius: 4px;
+      -moz-border-radius-bottomright: 4px;
+       -moz-border-radius-bottomleft: 4px;
+          border-bottom-right-radius: 4px;
+           border-bottom-left-radius: 4px;
 }
 .subnav .nav {
     margin-bottom: 0;
 }
 .subnav .nav > li > a {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    margin: 0;
-    padding: 5px 10px;
-    border: 0 none;
-    text-shadow: none;
-    font-weight: normal;
+  padding: 5px 10px;
+  margin: 0;
+  font-weight: normal;
+  text-shadow: none;
+  border: 0 none;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
 }
 .subnav .nav > li > a:hover {
-    background-color: #F5F5F5;
-    color: #000;
+  color: #000;
+  background-color: #f5f5f5;
 }
 .subnav .nav > .active > a, .subnav .nav > .active > a:hover {
-    background-color: #DFDEDE;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05) inset;
-    color: #000;
+  color: #000;
+  background-color: #dfdede;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05) inset;
 }
 .subnav .nav > li:first-child > a, .subnav .nav > li:first-child > a:hover {
     border-left: 0 none;
@@ -717,56 +714,5 @@ button.btn, input.btn[type="submit"] {
     border-bottom-left-radius:4px;
 }
 .subnav .nav > li:last-child > a {
-    border-right: 0 none;
-}
-
-/* test buttons */
-.btn-sun-splash-5 {
-    background-color: #C84663;
-    background-image: -moz-linear-gradient(center top , #E66481, #AA2845);
-    border-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.25);
-    color: #FFFFFF;
-    text-shadow: 0 -1px 0 #AA2845;
-}
-.btn-sun-splash-5:hover, .btn-sun-splash-5:active, .btn-sun-splash-5.active, .btn-sun-splash-5.disabled, .btn-sun-splash-5[disabled] {
-    background-color: #AA2845;
-}
-.btn-sun-splash-5:hover {
-    color: #FFFFFF;
-    text-shadow: 0 -1px 0 #8C0A27;
-}
-.btn-sun-splash-5:focus {
-    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.25);
-    color: #FFAAC7;
-}
-.btn-sun-splash-5.active, .btn-sun-splash-5:active {
-    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    background-image: none;
-    color: #FFAAC7;
-}
-
-.btn-view-over-the-town-4 {
-    background-color: #3B424C;
-    background-image: -moz-linear-gradient(center top , #59606A, #1D242E);
-    border-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.25);
-    color: #FFFFFF;
-    text-shadow: 0 -1px 0 #1D242E;
-}
-.btn-view-over-the-town-4:hover, .btn-view-over-the-town-4:active, .btn-view-over-the-town-4.active, .btn-view-over-the-town-4.disabled, .btn-view-over-the-town-4[disabled] {
-    background-color: #1D242E;
-}
-.btn-view-over-the-town-4:hover {
-    color: #FFFFFF;
-    text-shadow: 0 -1px 0 #000610;
-}
-.btn-view-over-the-town-4:focus {
-    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.25);
-    color: #9FA6B0;
-}
-.btn-view-over-the-town-4.active, .btn-view-over-the-town-4:active {
-    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    background-image: none;
-    color: #9FA6B0;
+  border-right: 0 none;
 }
