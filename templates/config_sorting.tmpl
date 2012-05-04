@@ -468,7 +468,7 @@
         var \$tvsortstring = \$('#tvfoldername').val();
         if(\$tvsortstring.length > 2) {
             typewatch(function () {
-                \$('#previewtv').show();
+                \$('#previewtv').fadeIn("fast", "linear");
                 \$('#previewtv-result').addClass("loading");
                 \$.ajax({
                   type: "GET",
@@ -482,14 +482,14 @@
             }, 500);
         }
         else
-            \$('#previewtv').hide();
+            \$('#previewtv').fadeOut("fast", "linear");
     }
 
     function new_previewmovie() {
         var \$moviesortstring = \$('#moviefoldername').val();
         if(\$moviesortstring.length > 2) {
             typewatch(function () {
-                \$('#previewmovie').show();
+                \$('#previewmovie').fadeIn("fast", "linear");
                 \$('#previewmovie-result').addClass("loading");
                 \$.ajax({
                   type: "GET",
@@ -503,14 +503,14 @@
             }, 500);
         }
         else
-            \$('#previewmovie').hide();
+            \$('#previewmovie').fadeOut("fast", "linear");
     }
 
     function new_previewdate() {
         var \$datesortstring = \$('#datefoldername').val();
         if(\$datesortstring.length > 2) {
             typewatch(function () {
-                \$('#previewdate').show();
+                \$('#previewdate').fadeIn("fast", "linear");
                 \$('#previewdate-result').addClass("loading");
                 \$.ajax({
                   type: "GET",
@@ -524,7 +524,7 @@
             }, 500);
         }
         else
-            \$('#previewdate').hide();
+            \$('#previewdate').fadeOut("fast", "linear");
     }
 
 </script>
@@ -543,7 +543,7 @@
     });
     \$('.toggleKey').click(function(e){
         e.preventDefault();
-        \$(this).hide().next().show();
+        \$(this).hide().next().fadeIn("fast", "linear");
     });    
 });
 </script>
