@@ -7,7 +7,7 @@
     <input type="hidden" name="session" value="$session" />
     <div id="addServer">
         <div class="padding alt">
-            <input type="button" value="$T('button-addServer')" id="addServerButton" />
+            <input type="button" class="btn" value="$T('button-addServer')" id="addServerButton" />
         </div>
     </div>
     <div class="section" id="addServerContent" style="display: none;">
@@ -65,8 +65,8 @@
                     <span class="desc">$T('srv-optional')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-addServer')" />
-                    <input type="button" value="$T('button-testServer')" class="testServer" />
+                    <input type="submit" class="btn" value="$T('button-addServer')" />
+                    <input type="button"  class="btn testServer" value="$T('button-testServer')" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->
@@ -94,7 +94,7 @@
                 $T('thisWeek'): $servers[$server]['amounts'][2]<br/>
                 $T('thisMonth'): $servers[$server]['amounts'][1]
             </p>
-            <input type="button" value="$T('button-clrServer')" class="clrServer" />
+            <input type="button" class="btn clrServer" value="$T('button-clrServer')" />
             <!--#end if#-->
         </div><!-- /col2 -->
         <div class="col1">
@@ -148,9 +148,9 @@
                     <span class="desc">$T('srv-optional')</span>
                 </div>
                 <div class="field-pair">
-                    <input type="submit" value="$T('button-saveChanges')" class="saveButton" />
-                    <input type="button" value="$T('button-testServer')" class="testServer" />
-                    <input type="button" value="$T('button-delServer')" class="delServer" />
+                    <input type="submit" value="$T('button-saveChanges')" class="btn saveButton" />
+                    <input type="button" value="$T('button-testServer')" class="btn testServer" />
+                    <input type="button" value="$T('button-delServer')" class="btn btn-danger delServer" />
                 </div>
             </fieldset>
         </div><!-- /col1 -->

@@ -627,7 +627,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
   -moz-box-shadow: none;
        box-shadow: none;
 }
-.btn-primary:focus, .btn-success:focus, .btn-danger:focus {
+.btn-primary:focus, .btn-success:focus, .btn-danger:focus, .btn-info:focus, .btn-warning:focus {
   border: 1px solid #000;
 }
 .alert {
