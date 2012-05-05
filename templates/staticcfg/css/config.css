@@ -614,21 +614,29 @@ input, textarea, select, .uneditable-input {
   width: auto;
   color: #000;
 }
-select:focus, .btn:focus {
+select:focus,
+.btn:focus {
   outline: none;
 }
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
   background-color: #efefef;
   border-color: #ccc;
 }
-.btn:focus, .btn:active {
+.btn:focus,
+.btn:active {
   border: 1px solid #4d90fe;
   outline: none;
   -moz-box-shadow: none;
        box-shadow: none;
 }
-.btn-primary:focus, .btn-success:focus, .btn-danger:focus, .btn-info:focus, .btn-warning:focus {
-  border: 1px solid #000;
+.btn-primary:focus,
+.btn-warning:focus,
+.btn-danger:focus,
+.btn-success:focus,
+.btn-info:focus,
+.btn-inverse:focus {
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75) inset;
 }
 .alert {
   font-size: 15px;
