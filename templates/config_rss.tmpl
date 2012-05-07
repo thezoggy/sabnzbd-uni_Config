@@ -109,10 +109,18 @@
 
     <div class="section">
         <div class="padTable">
-          <h2 class="nomargin activeRSS"><a href="${root}config/rss/">$T('cmenu-rss')</a> &raquo; <a href="$rss[$active_feed]['uri']" onclick="window.open(this.href); return false;">$active_feed</a></h2>
-          <!--#if $error#-->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="${root}config/rss/">$T('cmenu-rss')</a> <span class="divider">/</span>
+                </li>
+                <li class="active">
+                    <a href="$rss[$active_feed]['uri']" onclick="window.open(this.href); return false;"><div class="favicon" style="background-image: url(&quot;http://www.google.com/s2/favicons?domain=$rss[$active_feed]['baselink']&amp;alt=feed&quot;);"></div></a>
+                    $active_feed
+                </li>
+            </ul>
+            <!--#if $error#-->
             <h3 class="darkred">$error</h3>
-          <!--#end if#-->
+            <!--#end if#-->
 
           <form action="upd_rss_feed" method="post">
           <input type="hidden" name="session" value="$session" />
@@ -363,15 +371,14 @@
     </div>
 
     <br/>
-    <div style="padding-left: 10px; border-bottom: 1px solid #DFDEDE;">
-        <ul class="tabs">
-            <li><a href="#">$T('rss-matched') <span class="count"><!--#echo len($matched)#--></span></a></li>
-            <li><a href="#">$T('rss-notMatched') <span class="count"><!--#echo len($unmatched)#--></span></a></li>
-            <li><a href="#">$T('rss-done') <span class="count"><!--#echo len($downloaded)#--></span></a></li>
-        </ul>
-    </div>
-
+    <ul class="nav nav-tabs" style="padding: 0 15px;">
+        <li><a href="#matched" data-toggle="tab">$T('rss-matched') <span class="count"><!--#echo len($matched)#--></span></a></li>
+        <li><a href="#unmatched" data-toggle="tab">$T('rss-notMatched') <span class="count"><!--#echo len($unmatched)#--></span></a></li>
+        <li><a href="#downloaded" data-toggle="tab">$T('rss-done') <span class="count"><!--#echo len($downloaded)#--></span></a></li>
+    </ul>
     <div class="tab-content padTable">
+
+    <div id="matched" class="tab-pane">
           <!--#if $matched#-->
             <table class="catTable">
 
@@ -398,7 +405,7 @@
                         <input type="hidden" name="session" value="$session" />
                         <input type="hidden" name="url" value="$job[0]" />
                         <input type="hidden" name="nzbname" value="$job[4]" />
-                        <input type="submit" value="$T('link-download')" />
+                        <input type="submit" class="btn" value="$T('link-download')" />
                     </form>
                   </td>
                   <td class="align-center">$job[2]</td>
@@ -415,7 +422,7 @@
           <!--#end if#-->
     </div>
 
-    <div class="tab-content padTable">
+    <div id="unmatched" class="tab-pane">
           <!--#if $unmatched#-->
             <table class="catTable">
 
@@ -442,7 +449,7 @@
                         <input type="hidden" name="session" value="$session" />
                         <input type="hidden" name="url" value="$job[0]" />
                         <input type="hidden" name="nzbname" value="$job[4]" />
-                        <input type="submit" value="$T('link-download')" />
+                        <input type="submit" class="btn" value="$T('link-download')" />
                     </form>
                   </td>
                   <td class="align-center">$job[2]</td>
@@ -460,7 +467,7 @@
     </div>
 
 
-    <div class="tab-content padTable">
+    <div id="downloaded" class="tab-pane">
           <!--#if $downloaded#-->
             <form action="clean_rss_jobs" method="post">
             <input type="hidden" value="$feed" name="feed" />
@@ -492,6 +499,7 @@
           <!--#end if#-->
     </div>
 
+    </div>
 <!--#end if#-->
 
 </div><!-- /colmask -->
@@ -560,9 +568,8 @@
         var theForm = \$(this).closest("form");
         theForm.attr("action", "del_rss_filter").submit();
     });
-    \$(function() {
-        \$("ul.tabs").tabs("div.tab-content");
-    });
+
+    \$('.nav-tabs a:first').tab('show');
 
 });
 </script>
