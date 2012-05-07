@@ -370,6 +370,8 @@
         </div>
     </div>
 
+</div><!-- /colmask -->
+<div>
     <br/>
     <ul class="nav nav-tabs" style="padding: 0 15px;">
         <li><a href="#matched" data-toggle="tab">$T('rss-matched') <span class="count"><!--#echo len($matched)#--></span></a></li>
@@ -378,131 +380,130 @@
     </ul>
     <div class="tab-content padTable">
 
-    <div id="matched" class="tab-pane">
-          <!--#if $matched#-->
-            <table class="catTable">
+        <div id="matched" class="tab-pane fade in active">
+              <!--#if $matched#-->
+                <table class="catTable">
 
-            <!--#set $odd = False#--><!--#slurp#-->
-            <!--#set $cur = 0#--><!--#slurp#-->
-            <!--#for $job in $matched#--><!--#slurp#-->
-              <!--#set $odd = not $odd#--><!--#slurp#-->
-              <!--#set $cur = $cur+1#--><!--#slurp#-->
+                <!--#set $odd = False#--><!--#slurp#-->
+                <!--#set $cur = 0#--><!--#slurp#-->
+                <!--#for $job in $matched#--><!--#slurp#-->
+                  <!--#set $odd = not $odd#--><!--#slurp#-->
+                  <!--#set $cur = $cur+1#--><!--#slurp#-->
 
-              <!--#if $cur == 1#-->
-                <thead>
-                  <tr>
-                    <th>$T('link-download')</th>
-                    <th>$T('rss-skip')</th>
-                    <th>$T('rss-filter')</th>
-                    <th>$T('sort-title')</th>
+                  <!--#if $cur == 1#-->
+                    <thead>
+                      <tr>
+                        <th>$T('link-download')</th>
+                        <th>$T('rss-skip')</th>
+                        <th>$T('rss-filter')</th>
+                        <th>$T('sort-title')</th>
+                      </tr>
+                    </thead>
+                  <!--#end if#-->
+                  <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
+                      <td>
+                        <form action="download" method="get">
+                            <input type="hidden" value="$feed" name="feed" />
+                            <input type="hidden" name="session" value="$session" />
+                            <input type="hidden" name="url" value="$job[0]" />
+                            <input type="hidden" name="nzbname" value="$job[4]" />
+                            <input type="submit" class="btn" value="$T('link-download')" />
+                        </form>
+                      </td>
+                      <td class="align-center">$job[2]</td>
+                      <td class="align-center">
+                        <span>$job[3]</span>
+                      </td>
+                      <td>$job[1]</td>
                   </tr>
-                </thead>
+                <!--#end for#-->
+                </table>
+
+              <!--#else#-->
+                $T('none')
               <!--#end if#-->
-              <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
-                  <td>
-                    <form action="download" method="get">
-                        <input type="hidden" value="$feed" name="feed" />
-                        <input type="hidden" name="session" value="$session" />
-                        <input type="hidden" name="url" value="$job[0]" />
-                        <input type="hidden" name="nzbname" value="$job[4]" />
-                        <input type="submit" class="btn" value="$T('link-download')" />
-                    </form>
-                  </td>
-                  <td class="align-center">$job[2]</td>
-                  <td class="align-center">
-                    <span>$job[3]</span>
-                  </td>
-                  <td>$job[1]</td>
-              </tr>
-            <!--#end for#-->
-            </table>
+        </div><!-- /matched -->
 
-          <!--#else#-->
-            $T('none')
-          <!--#end if#-->
-    </div>
+        <div id="unmatched" class="tab-pane fade">
+              <!--#if $unmatched#-->
+                <table class="catTable">
 
-    <div id="unmatched" class="tab-pane">
-          <!--#if $unmatched#-->
-            <table class="catTable">
+                <!--#set $odd = False#--><!--#slurp#-->
+                <!--#set $cur = 0#--><!--#slurp#-->
+                <!--#for $job in $unmatched#--><!--#slurp#-->
+                  <!--#set $odd = not $odd#--><!--#slurp#-->
+                  <!--#set $cur = $cur+1#--><!--#slurp#-->
 
-            <!--#set $odd = False#--><!--#slurp#-->
-            <!--#set $cur = 0#--><!--#slurp#-->
-            <!--#for $job in $unmatched#--><!--#slurp#-->
-              <!--#set $odd = not $odd#--><!--#slurp#-->
-              <!--#set $cur = $cur+1#--><!--#slurp#-->
-
-              <!--#if $cur == 1#-->
-                <thead>
-                  <tr>
-                    <th>$T('link-download')</th>
-                    <th>$T('rss-skip')</th>
-                    <th>$T('rss-filter')</th>
-                    <th>$T('sort-title')</th>
+                  <!--#if $cur == 1#-->
+                    <thead>
+                      <tr>
+                        <th>$T('link-download')</th>
+                        <th>$T('rss-skip')</th>
+                        <th>$T('rss-filter')</th>
+                        <th>$T('sort-title')</th>
+                      </tr>
+                    </thead>
+                  <!--#end if#-->
+                  <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
+                      <td>
+                        <form action="download" method="get">
+                            <input type="hidden" value="$feed" name="feed" />
+                            <input type="hidden" name="session" value="$session" />
+                            <input type="hidden" name="url" value="$job[0]" />
+                            <input type="hidden" name="nzbname" value="$job[4]" />
+                            <input type="submit" class="btn" value="$T('link-download')" />
+                        </form>
+                      </td>
+                      <td class="align-center">$job[2]</td>
+                      <td class="align-center">
+                        <span>$job[3]</span>
+                      </td>
+                      <td>$job[1]</td>
                   </tr>
-                </thead>
+                <!--#end for#-->
+                </table>
+
+              <!--#else#-->
+                $T('none')
               <!--#end if#-->
-              <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
-                  <td>
-                    <form action="download" method="get">
-                        <input type="hidden" value="$feed" name="feed" />
-                        <input type="hidden" name="session" value="$session" />
-                        <input type="hidden" name="url" value="$job[0]" />
-                        <input type="hidden" name="nzbname" value="$job[4]" />
-                        <input type="submit" class="btn" value="$T('link-download')" />
-                    </form>
-                  </td>
-                  <td class="align-center">$job[2]</td>
-                  <td class="align-center">
-                    <span>$job[3]</span>
-                  </td>
-                  <td>$job[1]</td>
-              </tr>
-            <!--#end for#-->
-            </table>
-
-          <!--#else#-->
-            $T('none')
-          <!--#end if#-->
-    </div>
+        </div><!-- /unmatched -->
 
 
-    <div id="downloaded" class="tab-pane">
-          <!--#if $downloaded#-->
-            <form action="clean_rss_jobs" method="post">
-            <input type="hidden" value="$feed" name="feed" />
-            <input type="hidden" name="session" value="$session" />
-            <table class="catTable">
+        <div id="downloaded" class="tab-pane fade">
+              <!--#if $downloaded#-->
+                <form action="clean_rss_jobs" method="post">
+                <input type="hidden" value="$feed" name="feed" />
+                <input type="hidden" name="session" value="$session" />
+                <table class="catTable">
 
-            <!--#set $odd = False#--><!--#slurp#-->
-            <!--#set $cur = 0#--><!--#slurp#-->
-            <!--#for $job in $downloaded#--><!--#slurp#-->
-              <!--#set $odd = not $odd#--><!--#slurp#-->
-              <!--#set $cur = $cur+1#--><!--#slurp#-->
+                <!--#set $odd = False#--><!--#slurp#-->
+                <!--#set $cur = 0#--><!--#slurp#-->
+                <!--#for $job in $downloaded#--><!--#slurp#-->
+                  <!--#set $odd = not $odd#--><!--#slurp#-->
+                  <!--#set $cur = $cur+1#--><!--#slurp#-->
 
-              <!--#if $cur == 1#-->
-                <thead>
-                  <tr>
-                    <th>$T('sort-title')</th>
+                  <!--#if $cur == 1#-->
+                    <thead>
+                      <tr>
+                        <th>$T('sort-title')</th>
+                      </tr>
+                    </thead>
+                  <!--#end if#-->
+                  <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
+                      <td>$job</td>
                   </tr>
-                </thead>
+                <!--#end for#-->
+                </table>
+                </form>
+
+              <!--#else#-->
+                $T('none')
               <!--#end if#-->
-              <tr class="infoTableSeperator <!--#if $odd then "alt" else ""#-->">
-                  <td>$job</td>
-              </tr>
-            <!--#end for#-->
-            </table>
-            </form>
+        </div><!-- /downloaded -->
 
-          <!--#else#-->
-            $T('none')
-          <!--#end if#-->
-    </div>
-
-    </div>
+    </div><!-- /tab-content -->
 <!--#end if#-->
-
-</div><!-- /colmask -->
+</div><!-- /tabWrapper -->
 
 <script>
 \$(document).ready(function(){
