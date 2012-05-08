@@ -80,7 +80,7 @@
                     <label class="config" for="apikey">$T('opt-apikey')</label>
                     <input type="text" id="apikey" value="$session" size="35" />
                     <input type="button" value="$T('button-apikey')" id="generate_new_apikey" class="btn" />
-                    <div class="modal hide" id="api_qrcode" style="display: none;">
+                    <div class="modal hide fade" id="api_qrcode">
                       <div class="modal-body align-center">
                         <img src="https://chart.googleapis.com/chart?chs=300x300&amp;cht=qr&amp;chl=$session">
                       </div>
@@ -95,7 +95,7 @@
                     <label class="config" for="nzbkey">$T('opt-nzbkey')</label>
                     <input type="text" id="nzbkey" value="$nzb_key" size="35" />
                     <input type="button" value="$T('button-apikey')" id="generate_new_nzbkey" class="btn" />
-                    <div class="modal hide" id="nzb_qrcode" style="display: none;">
+                    <div class="modal hide fade" id="nzb_qrcode">
                       <div class="modal-body align-center">
                         <img src="https://chart.googleapis.com/chart?chs=300x300&amp;cht=qr&amp;chl=$nzb_key">
                       </div>

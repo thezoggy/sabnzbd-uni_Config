@@ -1,7 +1,7 @@
-/*
- * jQuery UI CSS Framework 1.8.18
+/*!
+ * jQuery UI CSS Framework 1.8.20
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
@@ -38,16 +38,16 @@
 .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 
-/*
- * jQuery UI CSS Framework 1.8.18
+/*!
+ * jQuery UI CSS Framework 1.8.20
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Theming/API
  *
- * To view and modify this theme, visit http://jqueryui.com/themeroller/?ctl=themeroller&ctl=themeroller&ctl=themeroller&ffDefault=Verdana,Arial,sans-serif&fwDefault=bold&fsDefault=1em&cornerRadius=4px&bgColorHeader=ffffff&bgTextureHeader=01_flat.png&bgImgOpacityHeader=0&borderColorHeader=aaaaaa&fcHeader=222222&iconColorHeader=222222&bgColorContent=dcdcdc&bgTextureContent=03_highlight_soft.png&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=efefef&bgTextureDefault=03_highlight_soft.png&bgImgOpacityDefault=75&borderColorDefault=aaaaaa&fcDefault=222222&iconColorDefault=8c291d&bgColorHover=dddddd&bgTextureHover=03_highlight_soft.png&bgImgOpacityHover=75&borderColorHover=999999&fcHover=222222&iconColorHover=222222&bgColorActive=dfdfdf&bgTextureActive=05_inset_soft.png&bgImgOpacityActive=75&borderColorActive=aaaaaa&fcActive=140f06&iconColorActive=8c291d&bgColorHighlight=fbf9ee&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=aaaaaa&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=fef1ec&bgTextureError=02_glass.png&bgImgOpacityError=95&borderColorError=aaaaaa&fcError=8c291d&iconColorError=cd0a0a&bgColorOverlay=eeeeee&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=80&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=60&thicknessShadow=4px&offsetTopShadow=-4px&offsetLeftShadow=-4px&cornerRadiusShadow=4px
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?ctl=themeroller&ctl=themeroller&ctl=themeroller&ctl=themeroller&ffDefault=Verdana,Arial,sans-serif&fwDefault=bold&fsDefault=1em&cornerRadius=4px&bgColorHeader=ffffff&bgTextureHeader=01_flat.png&bgImgOpacityHeader=0&borderColorHeader=aaaaaa&fcHeader=222222&iconColorHeader=222222&bgColorContent=dcdcdc&bgTextureContent=03_highlight_soft.png&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=efefef&bgTextureDefault=03_highlight_soft.png&bgImgOpacityDefault=75&borderColorDefault=aaaaaa&fcDefault=222222&iconColorDefault=8c291d&bgColorHover=dddddd&bgTextureHover=03_highlight_soft.png&bgImgOpacityHover=75&borderColorHover=999999&fcHover=222222&iconColorHover=222222&bgColorActive=dfdfdf&bgTextureActive=05_inset_soft.png&bgImgOpacityActive=75&borderColorActive=aaaaaa&fcActive=140f06&iconColorActive=8c291d&bgColorHighlight=fbf9ee&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=aaaaaa&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=fef1ec&bgTextureError=02_glass.png&bgImgOpacityError=95&borderColorError=aaaaaa&fcError=8c291d&iconColorError=cd0a0a&bgColorOverlay=eeeeee&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=80&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=60&thicknessShadow=4px&offsetTopShadow=-4px&offsetLeftShadow=-4px&cornerRadiusShadow=4px
  */
 
 
@@ -284,17 +284,17 @@
 
 /* Overlays */
 .ui-widget-overlay { background: #eeeeee url(images/ui-bg_flat_0_eeeeee_40x100.png) 50% 50% repeat-x; opacity: .80;filter:Alpha(Opacity=80); }
-.ui-widget-shadow { margin: -4px 0 0 -4px; padding: 4px; background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .60;filter:Alpha(Opacity=60); -moz-border-radius: 4px; -khtml-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }/*
- * jQuery UI Resizable 1.8.18
+.ui-widget-shadow { margin: -4px 0 0 -4px; padding: 4px; background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .60;filter:Alpha(Opacity=60); -moz-border-radius: 4px; -khtml-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }/*!
+ * jQuery UI Resizable 1.8.20
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Resizable#theming
  */
 .ui-resizable { position: relative;}
-.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block; }
+.ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
 .ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
 .ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
 .ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
@@ -303,10 +303,10 @@
 .ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
 .ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
 .ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
-.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}/*
- * jQuery UI Autocomplete 1.8.18
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}/*!
+ * jQuery UI Autocomplete 1.8.20
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
@@ -318,7 +318,7 @@
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
 
 /*
- * jQuery UI Menu 1.8.18
+ * jQuery UI Menu 1.8.20
  *
  * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -356,10 +356,10 @@
 	font-weight: normal;
 	margin: -1px;
 }
-/*
- * jQuery UI Dialog 1.8.18
+/*!
+ * jQuery UI Dialog 1.8.20
  *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
